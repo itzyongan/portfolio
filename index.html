@@ -222,5 +222,8 @@ g.fillStyle="rgba(198,119,255,.85)";g.beginPath();g.arc(p.x,p.y,1.8,0,6.283);g.f
 requestAnimationFrame(loop)})();
 })();
 </script>
+<script>
+document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener("click",function(e){var t=document.getElementById(a.getAttribute("href").slice(1));if(!t)return;e.preventDefault();t.scrollIntoView({behavior:"smooth",block:"start"})})});
+</script>
 </body>
 </html>
