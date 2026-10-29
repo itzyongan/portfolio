@@ -86,6 +86,12 @@ h1:hover span{filter:drop-shadow(0 0 16px rgba(159,0,255,.8))}
 .mrow small{color:var(--muted)}
 .btn{white-space:nowrap;text-align:center}
 .feature .btns{margin-top:0}
+.feature+.feature{margin-top:24px}
+.mfield{display:flex;justify-content:space-between;align-items:center;padding:11px 14px;border-radius:8px;background:#22262c;border:1px solid #343941;font-size:.85rem;letter-spacing:.15em;margin-bottom:12px}
+.mfield small{letter-spacing:0;color:var(--muted)}
+.meter{display:grid;grid-template-columns:repeat(4,1fr);gap:6px;margin-bottom:8px}
+.meter i{height:6px;border-radius:99px;background:#343941}
+.meter i.on{background:linear-gradient(90deg,#9F00FF,#c677ff);box-shadow:0 0 10px rgba(159,0,255,.6)}
 @media(max-width:520px){.feature{padding:24px}.feature .btns .btn{flex:1 1 100%}}
 @media(prefers-reduced-motion:reduce){.shield svg,.role::after{animation:none}}
 </style>
@@ -101,7 +107,7 @@ h1:hover span{filter:drop-shadow(0 0 16px rgba(159,0,255,.8))}
 <h1>Hi, I’m <span>Yong An</span>.<small>Cybersecurity student.</small></h1>
 <div class="role" id="role"></div>
 <p class="lead">Learning how systems break so I can help keep them secure.</p>
-<div class="btns"><a class="btn p" href="https://github.com/itzyongan" target="_blank" rel="noopener">View GitHub</a><a class="btn" href="https://discord.gg/TTAgYjXmkh" target="_blank" rel="noopener">Join Discord</a><a class="btn" href="#contact">Get in touch</a></div>
+<div class="btns"><a class="btn p" href="https://github.com/itzyongan" target="_blank" rel="noopener">View GitHub</a><a class="btn" href="https://discord.gg/TTAgYjXmkh" target="_blank" rel="noopener">Join Discord</a></div>
 </div>
 <div class="shield" aria-hidden="true">
 <svg viewBox="0 0 200 240" fill="none" stroke="#c677ff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M100 12 28 40v68c0 54 34 96 72 120 38-24 72-66 72-120V40z" fill="rgba(159,0,255,.14)"/><path d="M100 36 50 56v52c0 40 24 72 50 90 26-18 50-50 50-90V56z" stroke-opacity=".45"/><rect x="74" y="98" width="52" height="40" rx="7" fill="#9F00FF" stroke="#c677ff"/><path d="M84 98V84a16 16 0 0 1 32 0v14"/><circle cx="100" cy="118" r="5" fill="#fff" stroke="none"/></svg>
@@ -117,7 +123,7 @@ h1:hover span{filter:drop-shadow(0 0 16px rgba(159,0,255,.8))}
 </section>
 
 <section id="projects">
-<h2>Featured project</h2>
+<h2>Projects</h2>
 <div class="feature">
 <h3>Asia PvP Servers</h3>
 <p>A community-maintained directory of 1.9+ Asia Minecraft PvP servers, organized by premium and cracked, with region and game mode availability for duels, free-for-all and sandbox. Open to contributions through pull requests.</p>
@@ -131,6 +137,18 @@ h1:hover span{filter:drop-shadow(0 0 16px rgba(159,0,255,.8))}
 </a>
 <div class="stats"><div><b>10</b><small>stars</small></div><div><b>230</b><small>commits</small></div><div><b>20</b><small>servers</small></div></div>
 <div class="btns"><a class="btn p" href="https://asia-pvp-servers.vercel.app/" target="_blank" rel="noopener">Visit live site</a><a class="btn" href="https://github.com/itzyongan/asia-pvp-servers" target="_blank" rel="noopener">View repository</a></div>
+</div>
+<div class="feature">
+<h3>Password Strength Checker</h3>
+<p>A web tool that checks how strong a password is, built as a hands-on way to practice the security basics I’m learning: what makes a password easy or hard to guess.</p>
+<a class="mock" href="https://password-strength-checker-v1.vercel.app/" target="_blank" rel="noopener" aria-label="Open the live Password Strength Checker">
+<div class="mbar"><i></i><i></i><i></i><span>password-strength-checker-v1.vercel.app</span></div>
+<div class="mbody"><h4>Password <em>Strength</em> Checker</h4><p>Type a password to see how strong it is.</p>
+<div class="mfield"><span>••••••••••••</span><small>show</small></div>
+<div class="meter"><i class="on"></i><i class="on"></i><i class="on"></i><i></i></div></div>
+</a>
+<div class="chips"><span class="chip">Web app</span><span class="chip">Security</span><span class="chip">Vercel</span></div>
+<div class="btns"><a class="btn p" href="https://password-strength-checker-v1.vercel.app/" target="_blank" rel="noopener">Visit live site</a><a class="btn" href="https://github.com/itzyongan/password-strength-checker" target="_blank" rel="noopener">View repository</a></div>
 </div>
 </section>
 
