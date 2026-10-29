@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Yong An Hong | Cybersecurity Student Portfolio</title>
+<meta name="description" content="First-year cybersecurity student at the American University of Phnom Penh.">
+<style>
+:root{--bg:#07040d;--card:#0f0919;--text:#f1e9fb;--muted:#a597ba;--p:#9F00FF;--pl:#c677ff;--border:#2a1740;color-scheme:dark;
+box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#07040d}}
+:root[data-theme="dark"]{--bg:#07040d}
+html{scroll-padding-top:env(safe-area-inset-top,0px);scroll-behavior:smooth}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:17px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;overflow-x:hidden}
+body::before{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+background:radial-gradient(600px 400px at 85% 8%,rgba(159,0,255,.35),transparent 70%),radial-gradient(500px 400px at 5% 60%,rgba(159,0,255,.14),transparent 70%),
+linear-gradient(rgba(159,0,255,.07) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,rgba(159,0,255,.07) 1px,transparent 1px) 0 0/48px 48px;
+-webkit-mask-image:linear-gradient(#000 40%,transparent 95%);mask-image:linear-gradient(#000 40%,transparent 95%)}
+a{color:var(--pl)}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+nav{display:flex;justify-content:space-between;align-items:center;padding:26px 0}
+.logo{font-weight:800;letter-spacing:.02em}
+.logo b{color:var(--pl)}
+nav div a{color:var(--muted);text-decoration:none;margin-left:24px;font-size:.95rem;transition:.2s}
+nav div a:hover{color:var(--pl)}
+.hero{display:grid;grid-template-columns:1.7fr 1fr;gap:24px;align-items:center;padding:90px 0 110px}
+.eyebrow{font:600 .85rem ui-monospace,Menlo,Consolas,monospace;color:var(--pl);letter-spacing:.12em;text-transform:uppercase}
+h1{font-size:clamp(2.3rem,6.4vw,3.7rem);line-height:1.05;margin:16px 0 18px;letter-spacing:-.03em;white-space:nowrap}
+h1 small{display:block;font-size:.62em;font-weight:700;color:var(--muted);letter-spacing:-.01em;margin-top:6px}
+h1 span{background:linear-gradient(90deg,#c677ff,#9F00FF);-webkit-background-clip:text;background-clip:text;color:transparent}
+.role{font:1.15rem ui-monospace,Menlo,Consolas,monospace;color:var(--text);min-height:1.8em}
+.role::after{content:"▌";color:var(--p);margin-left:3px;animation:b 1s steps(1) infinite}
+@keyframes b{50%{opacity:0}}
+.lead{color:var(--muted);max-width:520px;margin:14px 0 0}
+.btns{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{padding:12px 24px;border-radius:99px;text-decoration:none;font-weight:600;border:1px solid var(--border);color:var(--text);transition:.25s}
+.btn:hover{border-color:var(--p);box-shadow:0 0 24px rgba(159,0,255,.45)}
+.btn.p{background:var(--p);border-color:var(--p);color:#fff;box-shadow:0 0 28px rgba(159,0,255,.5)}
+.shield{display:flex;justify-content:center}
+.shield svg{width:min(280px,70%);height:auto;filter:drop-shadow(0 0 36px rgba(159,0,255,.65));animation:f 6s ease-in-out infinite}
+@keyframes f{50%{transform:translateY(-12px)}}
+section{padding:60px 0}
+h2{font-size:.85rem;font:600 .85rem ui-monospace,Menlo,Consolas,monospace;letter-spacing:.14em;text-transform:uppercase;color:var(--pl);margin:0 0 22px}
+.about{display:grid;grid-template-columns:1.4fr 1fr;gap:40px;align-items:start}
+.about p{margin:0;font-size:1.25rem;line-height:1.6}
+.facts{list-style:none;margin:0;padding:0;display:grid;gap:14px}
+.facts li{padding-left:16px;border-left:2px solid var(--p);color:var(--muted)}
+.facts b{display:block;color:var(--text)}
+.feature{background:linear-gradient(145deg,#150b25,var(--card));border:1px solid var(--border);border-radius:22px;padding:36px;transition:.3s}
+.feature:hover{border-color:var(--p);box-shadow:0 0 50px rgba(159,0,255,.25)}
+.feature h3{font-size:1.8rem;margin:0 0 10px;letter-spacing:-.02em}
+.feature p{color:var(--muted);margin:0 0 24px;max-width:640px}
+.stats{display:flex;gap:40px;flex-wrap:wrap;margin-bottom:28px}
+.stats b{display:block;font-size:2.4rem;line-height:1;color:var(--pl)}
+.stats small{color:var(--muted)}
+.links{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+.link{display:block;padding:22px;border:1px solid var(--border);border-radius:16px;background:var(--card);text-decoration:none;color:var(--text);transition:.25s}
+.link:hover{border-color:var(--p);transform:translateY(-4px);box-shadow:0 12px 36px rgba(159,0,255,.25)}
+.link b{display:block;font-size:1.1rem}
+.link small{color:var(--muted)}
+footer{padding:40px 0 56px;color:var(--muted);font-size:.9rem;text-align:center}
+@media(max-width:760px){.hero,.about{grid-template-columns:1fr}.hero{padding:50px 0 70px}.shield{order:-1}.shield svg{width:150px}nav div a{margin-left:14px}}
+body::after{content:"";position:fixed;inset:0;z-index:0;pointer-events:none;background:radial-gradient(380px circle at var(--mx,70%) var(--my,25%),rgba(159,0,255,.17),transparent 70%)}
+.shield{transition:transform .25s ease-out}
+.feature{background:radial-gradient(460px circle at var(--cx,-999px) var(--cy,-999px),rgba(159,0,255,.22),transparent 60%),linear-gradient(145deg,#150b25,var(--card));will-change:transform}
+.link{background:radial-gradient(280px circle at var(--cx,-999px) var(--cy,-999px),rgba(159,0,255,.3),transparent 65%),var(--card);will-change:transform}
+.btn:hover{transform:translateY(-2px)}
+h1 span{transition:filter .3s}
+h1:hover span{filter:drop-shadow(0 0 16px rgba(159,0,255,.8))}
+#net{position:fixed;inset:0;width:100%;height:100%;z-index:0;pointer-events:none}
+.mock{display:block;margin:0 0 28px;border:1px solid var(--border);border-radius:12px;overflow:hidden;text-decoration:none;color:var(--text);background:#1a1d22;transition:.3s}
+.mock:hover{border-color:var(--p);box-shadow:0 0 36px rgba(159,0,255,.3)}
+.mbar{display:flex;align-items:center;gap:6px;padding:9px 12px;background:#101216}
+.mbar i{width:9px;height:9px;border-radius:50%;background:#454a52}
+.mbar span{flex:1;margin-left:8px;padding:3px 12px;border-radius:99px;background:#1a1d22;color:var(--muted);font-size:.75rem}
+.mbody{padding:22px}
+.mbody h4{margin:0 0 4px;font-size:1.6rem;letter-spacing:-.02em}
+.mbody h4 em{font-style:normal;color:var(--pl)}
+.mbody p{margin:0 0 12px;font-size:.82rem;color:var(--muted)}
+.mchips{display:flex;gap:6px;margin-bottom:10px}
+.mchips b{font-size:.7rem;padding:2px 10px;border-radius:99px;border:1px solid #343941;font-weight:500}
+.mchips b:first-child{background:var(--p);border-color:var(--p)}
+.mrow{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;margin-top:6px;border-radius:8px;background:#22262c;font-size:.8rem}
+.mrow small{color:var(--muted)}
+@media(prefers-reduced-motion:reduce){.shield svg,.role::after{animation:none}}
+</style>
+</head>
+<body>
+<canvas id="net"></canvas>
+<div class="wrap">
+<nav><span class="logo">Yong An <b>Hong</b></span><div><a href="#about">About</a><a href="#projects">Project</a><a href="#certificates">Certificates</a><a href="#contact">Contact</a></div></nav>
+
+<header class="hero">
+<div>
+<div class="eyebrow">Cybersecurity · AUPP · Year 1</div>
+<h1>Hi, I’m <span>Yong An</span>.<small>Cybersecurity student.</small></h1>
+<div class="role" id="role"></div>
+<p class="lead">Learning how systems break so I can help keep them secure.</p>
+<div class="btns"><a class="btn p" href="https://github.com/itzyongan" target="_blank" rel="noopener">View GitHub</a><a class="btn" href="https://discord.gg/TTAgYjXmkh" target="_blank" rel="noopener">Join Discord</a><a class="btn" href="#contact">Get in touch</a></div>
+</div>
+<div class="shield" aria-hidden="true">
+<svg viewBox="0 0 200 240" fill="none" stroke="#c677ff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M100 12 28 40v68c0 54 34 96 72 120 38-24 72-66 72-120V40z" fill="rgba(159,0,255,.14)"/><path d="M100 36 50 56v52c0 40 24 72 50 90 26-18 50-50 50-90V56z" stroke-opacity=".45"/><rect x="74" y="98" width="52" height="40" rx="7" fill="#9F00FF" stroke="#c677ff"/><path d="M84 98V84a16 16 0 0 1 32 0v14"/><circle cx="100" cy="118" r="5" fill="#fff" stroke="none"/></svg>
+</div>
+</header>
+
+<section id="about">
+<h2>About</h2>
+<div class="about">
+<p>I’m a first-year student at the American University of Phnom Penh, building a foundation in security. Online I go by <b>itzyongan</b>, where I make resources and content for the Minecraft PvP community.</p>
+<ul class="facts"><li><b>Studying</b>Cybersecurity, AUPP</li><li><b>Based in</b>Phnom Penh, Cambodia</li><li><b>Also</b>Minecraft creator</li></ul>
+</div>
+</section>
+
+<section id="projects">
+<h2>Featured project</h2>
+<div class="feature">
+<h3>Asia PvP Servers</h3>
+<p>A community-maintained directory of 1.9+ Asia Minecraft PvP servers, organized by premium and cracked, with region and game mode availability for duels, free-for-all and sandbox. Open to contributions through pull requests.</p>
+<a class="mock" href="https://asia-pvp-servers.vercel.app/" target="_blank" rel="noopener" aria-label="Open the live Asia PvP Servers website">
+<div class="mbar"><i></i><i></i><i></i><span>asia-pvp-servers.vercel.app</span></div>
+<div class="mbody"><h4>Asia <em>PvP</em> server list</h4><p>Low-ping 1.9+ practice servers across Asia. Click an IP to copy it.</p>
+<div class="mchips"><b>All</b><b>Duels</b><b>FFA</b><b>Sandbox</b></div>
+<div class="mrow"><span>as.catpvp.xyz</span><small>Duels · Sandbox</small></div>
+<div class="mrow"><span>as.mcpvp.club</span><small>Duels</small></div>
+<div class="mrow"><span>as.stray.gg</span><small>FFA · Sandbox</small></div></div>
+</a>
+<div class="stats"><div><b>10</b><small>stars</small></div><div><b>230</b><small>commits</small></div><div><b>20</b><small>servers</small></div></div>
+<a class="btn p" href="https://asia-pvp-servers.vercel.app/" target="_blank" rel="noopener">Visit live site</a> <a class="btn" href="https://github.com/itzyongan/asia-pvp-servers" target="_blank" rel="noopener">View repository</a>
+</div>
+</section>
+
+<section id="certificates">
+<h2>Certificates</h2>
+<div class="links">
+<a class="link" href="https://www.coursera.org/account/accomplishments/verify/1DZ2IHV4IQMI" target="_blank" rel="noopener"><b>Foundations of Cybersecurity</b><small>Google · Coursera · Verify credential</small></a>
+<a class="link" href="https://www.coursera.org/account/accomplishments/verify/BC9QD8EFG9VZ" target="_blank" rel="noopener"><b>Play It Safe: Manage Security Risks</b><small>Google · Coursera · Verify credential</small></a>
+</div>
+</section>
+
+<section id="contact">
+<h2>Find me</h2>
+<div class="links">
+<a class="link" href="mailto:itzyongan@gmail.com"><b>Email</b><small>itzyongan@gmail.com</small></a>
+<a class="link" href="https://github.com/itzyongan" target="_blank" rel="noopener"><b>GitHub</b><small>Code and projects</small></a>
+<a class="link" href="https://www.linkedin.com/in/itzyongan/" target="_blank" rel="noopener"><b>LinkedIn</b><small>Professional profile</small></a>
+<a class="link" href="https://www.facebook.com/defasyl" target="_blank" rel="noopener"><b>Facebook</b><small>Say hi on Facebook</small></a>
+
+
+
+</div>
+</section>
+
+<footer>© 2026 Yong An Hong</footer>
+</div>
+<script>
+(function(){var roles=["Aspiring security analyst","Learning ethical hacking","Minecraft community builder"],r=document.getElementById("role");
+if(window.matchMedia&&matchMedia("(prefers-reduced-motion: reduce)").matches){r.textContent=roles[0];return}
+var i=0,j=0,del=false;(function t(){var s=roles[i];j+=del?-1:1;r.textContent=s.slice(0,j);var d=del?30:70;if(!del&&j===s.length){del=true;d=1400}else if(del&&j===0){del=false;i=(i+1)%roles.length;d=300}setTimeout(t,d)})();})();
+</script>
+<script>
+(function(){
+
+var root=document.documentElement,sh=document.querySelector(".shield");
+addEventListener("mousemove",function(e){
+root.style.setProperty("--mx",e.clientX+"px");root.style.setProperty("--my",e.clientY+"px");
+var dx=(e.clientX/innerWidth-.5),dy=(e.clientY/innerHeight-.5);
+sh.style.transform="translate("+(dx*-36)+"px,"+(dy*-36)+"px) rotate("+(dx*6)+"deg)"});
+document.querySelectorAll(".feature,.link").forEach(function(c){
+c.addEventListener("mousemove",function(e){var r=c.getBoundingClientRect(),x=e.clientX-r.left,y=e.clientY-r.top,s=c.classList.contains("feature")?3:9;
+c.style.setProperty("--cx",x+"px");c.style.setProperty("--cy",y+"px");
+c.style.transform="perspective(800px) rotateX("+((y/r.height-.5)*-s)+"deg) rotateY("+((x/r.width-.5)*s)+"deg) translateY(-4px)"});
+c.addEventListener("mouseleave",function(){c.style.transform=""})});
+var cv=document.getElementById("net"),g=cv.getContext("2d"),W,H,P=[],m={x:-999,y:-999};
+function fit(){W=cv.width=innerWidth;H=cv.height=innerHeight;P=[];for(var i=0,n=Math.min(110,Math.floor(W*H/14000));i<n;i++)P.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.5,vy:(Math.random()-.5)*.5})}
+fit();addEventListener("resize",fit);
+addEventListener("mousemove",function(e){m.x=e.clientX;m.y=e.clientY});
+document.addEventListener("mouseleave",function(){m.x=m.y=-999});
+addEventListener("mousedown",function(e){P.forEach(function(p){var dx=p.x-e.clientX,dy=p.y-e.clientY,d=Math.sqrt(dx*dx+dy*dy)||1;if(d<260){p.vx+=dx/d*(260-d)/22;p.vy+=dy/d*(260-d)/22}})});
+(function loop(){g.clearRect(0,0,W,H);
+for(var i=0;i<P.length;i++){var p=P[i],dx=m.x-p.x,dy=m.y-p.y,d=Math.sqrt(dx*dx+dy*dy);
+if(d<190){p.vx+=dx/d*.035;p.vy+=dy/d*.035}
+p.vx*=.985;p.vy*=.985;var sp=Math.sqrt(p.vx*p.vx+p.vy*p.vy);if(sp<.18){p.vx+=(Math.random()-.5)*.03;p.vy+=(Math.random()-.5)*.03}
+p.x+=p.vx;p.y+=p.vy;if(p.x<0||p.x>W)p.vx*=-1;if(p.y<0||p.y>H)p.vy*=-1;
+if(d<190){g.strokeStyle="rgba(198,119,255,"+(1-d/190)*.8+")";g.beginPath();g.moveTo(p.x,p.y);g.lineTo(m.x,m.y);g.stroke()}
+for(var j=i+1;j<P.length;j++){var q=P[j],ax=p.x-q.x,ay=p.y-q.y,e=ax*ax+ay*ay;if(e<11000){g.strokeStyle="rgba(159,0,255,"+(1-e/11000)*.45+")";g.beginPath();g.moveTo(p.x,p.y);g.lineTo(q.x,q.y);g.stroke()}}
+g.fillStyle="rgba(198,119,255,.85)";g.beginPath();g.arc(p.x,p.y,1.8,0,6.283);g.fill()}
+requestAnimationFrame(loop)})();
+})();
+</script>
+</body>
+</html>
