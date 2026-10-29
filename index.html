@@ -100,6 +100,11 @@ h1:hover span{filter:drop-shadow(0 0 16px rgba(159,0,255,.8))}
 .skill{display:flex;align-items:center;gap:12px;padding:14px 22px;border:1px solid var(--border);border-radius:14px;background:var(--card);font-weight:600;transition:.25s}
 .skill:hover{border-color:var(--p);transform:translateY(-3px);box-shadow:0 10px 30px rgba(159,0,255,.25)}
 .skill svg{width:26px;height:26px;fill:var(--text);flex-shrink:0}
+body{-webkit-tap-highlight-color:transparent}
+.skill,.link,.btn,.mock{user-select:none;-webkit-user-select:none;-webkit-touch-callout:none}
+@media(hover:none){.skill:hover,.link:hover,.feature:hover,.mock:hover{border-color:var(--border);box-shadow:none;transform:none}.btn:not(.p):hover{border-color:var(--border);box-shadow:none;transform:none}.btn.p:hover{transform:none}nav div a:hover{color:var(--muted)}}
+.skill.tap,.link.tap,.mock.tap,.feature.tap,.btn.tap{border-color:var(--p);box-shadow:0 0 24px rgba(159,0,255,.4)}
+.skill.tap,.link.tap{transform:translateY(-3px)}
 .feature .btns{margin-top:0}
 @media(max-width:560px){nav{flex-direction:column;align-items:flex-start;gap:8px}nav div{display:flex;flex-wrap:wrap;gap:4px 18px}nav div a{margin-left:0}}
 .chips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 22px}
@@ -243,6 +248,12 @@ requestAnimationFrame(loop)})();
 </script>
 <script>
 document.querySelectorAll('a[href^="#"]').forEach(function(a){a.addEventListener("click",function(e){var t=document.getElementById(a.getAttribute("href").slice(1));if(!t)return;e.preventDefault();t.scrollIntoView({behavior:"smooth",block:"start"})})});
+</script>
+<script>
+(function(){var last=0;
+addEventListener("pointerdown",function(e){if(e.pointerType==="mouse")return;last=Date.now();var t=e.target.closest(".skill,.link,.mock,.feature,.btn");if(!t)return;t.classList.add("tap");setTimeout(function(){t.classList.remove("tap");t.style.transform="";t.style.removeProperty("--cx");t.style.removeProperty("--cy")},450)},true);
+document.addEventListener("mousemove",function(e){if(Date.now()-last<900){e.stopPropagation()}},true);
+})();
 </script>
 </body>
 </html>
