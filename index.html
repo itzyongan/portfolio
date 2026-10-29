@@ -84,6 +84,9 @@ h1:hover span{filter:drop-shadow(0 0 16px rgba(159,0,255,.8))}
 .mchips b:first-child{background:var(--p);border-color:var(--p)}
 .mrow{display:flex;justify-content:space-between;gap:10px;padding:9px 12px;margin-top:6px;border-radius:8px;background:#22262c;font-size:.8rem}
 .mrow small{color:var(--muted)}
+.btn{white-space:nowrap;text-align:center}
+.feature .btns{margin-top:0}
+@media(max-width:520px){.feature{padding:24px}.feature .btns .btn{flex:1 1 100%}}
 @media(prefers-reduced-motion:reduce){.shield svg,.role::after{animation:none}}
 </style>
 </head>
@@ -127,7 +130,7 @@ h1:hover span{filter:drop-shadow(0 0 16px rgba(159,0,255,.8))}
 <div class="mrow"><span>as.stray.gg</span><small>FFA · Sandbox</small></div></div>
 </a>
 <div class="stats"><div><b>10</b><small>stars</small></div><div><b>230</b><small>commits</small></div><div><b>20</b><small>servers</small></div></div>
-<a class="btn p" href="https://asia-pvp-servers.vercel.app/" target="_blank" rel="noopener">Visit live site</a> <a class="btn" href="https://github.com/itzyongan/asia-pvp-servers" target="_blank" rel="noopener">View repository</a>
+<div class="btns"><a class="btn p" href="https://asia-pvp-servers.vercel.app/" target="_blank" rel="noopener">Visit live site</a><a class="btn" href="https://github.com/itzyongan/asia-pvp-servers" target="_blank" rel="noopener">View repository</a></div>
 </div>
 </section>
 
