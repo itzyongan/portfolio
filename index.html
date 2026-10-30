@@ -3,12 +3,13 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#eef3f4">
   <meta name="description" content="First-year cybersecurity student at the American University of Phnom Penh.">
 
   <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <!-- Tab icons (embedded image data, one per size) -->
 <link rel="icon" type="image/png" sizes="16x16" href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAABWGlDQ1BJQ0MgUHJvZmlsZQAAeJx9kLFLw1AQxr9WpaB1EB0cHDKJQ5SSCro4tBVEcQhVweqUvqapkMZHkiIFN/+Bgv+BCs5uFoc6OjgIopPo5uSk4KLleS+JpCJ6j+N+fO+74zggOW5wbvcDqDu+W1zKK5ulLSX1jAS9IAzm8Zyur0r+rj/j/T703k7LWb///43Biukxqp+UGcZdH0ioxPqezyXvE4+5tBRxS7IV8onkcsjngWe9WCC+JlZYzagQvxCr5R7d6uG63WDRDnL7tOlsrMk5lBNYxA48cNgw0IQCHdk//LOBv4BdcjfhUp+FGnzqyZEiJ5jEy3DAMAOVWEOGUpN3ju53F91PjbWDJ2ChI4S4iLWVDnA2Rydrx9rUPDAyBFy1ueEagdRHmaxWgddTYLgEjN5Qz7ZXzWrh9uk8MPAoxNskkDoEui0hPo6E6B5T8wNw6XwBA6diE8HYWhMAAAPCSURBVHjaBcFrbFNVAAfw/znn3ttubWnXbS2DdWzujcp4B5msIxM34uQDLGYqSnxFE0gwMQbiB/mCGg3GxcQQgwYTP48AIZvDkJUJiIpDFtatlL0pK2vpttvX7X2c4+9HvACO9jSSwx1N4vzv0zh9bM9uDvLhV+duBoPNpYFg93YMDP23EI0mrx8/2v7jvT8Xbt0ejeLJXJSw+n2C7aiQyMbmEpFM6TaF62eSK9rZpnKy5dbdmMfvtZPkVIxMPox73u2sbvl3JntkKZH05nNa6P74gukONBLSGrCz6hqnNDiS/G1/67p2O9eF0yHz/jClGiRiGQLNPiIaiwpcVkxaubaEjEdSIS39tKsu2G2yCjvEaDjzrSKjd3o5p2cMSBfvpqia1kmRAhRMjulUgSwsmzS+nCEjYyldIWYtL1guf33TIKtySjvtNnIOhHBfqSypBZBUjgCCI68ZYNTCL58eQlWxhYhqwWaj1C0LzvLGLlcgMMiIZn2jg28SnAlmozTNgXTGxKYN5Vi/rhSn3upEWqeYjM7DphQQj6WJ2yaEQzLpqsPhoDuf97fLzjVYypt0NaHhna2VADgO7HwWn/fuhSIz1JV78F7PG6h0CjjcQEEzqFshsDNXO7t6+uCZqOkmb3dvIp+8vhcsn8D6cheSwglmCRiEoEhRMPzHMLxVAXgVAZuhk81VlVhx+Z20Ukygjj/G+aFx/HVnGN+NLEFuaINCOdKFHEyDY3IyjNq2bhw++QNKG3bDt20vbsZMGEKAHvr6zuKZ/jDMSFTk/J0IhR/hsy/PwiEBMpMwM/UQpHYXXjpyEjXP1GJ/Ty9mRy6K65FZaFltkV5Z8odOvdmIvgv9/OMv+hCbiyPxNImm7UGM3bgGVedoaduHx9ExhCdmsSf4MhrbXuUcgCxJIZa+fPxRw8at7xe1fiTUJ0vEtAzCBIG7Yi2Ki1148cBr8Hh9MHUN2WwKFdXVYlHlov/SBVLm8XzAXukIxhJWWYljw7YXhNCN5ON5ZugmOLdQVtMMVuSAlsvByOVg5DW4y9YbLVu3y/nl2PerqvqzdG/RYmufC5yol2jL6pNE+2omL+xSgQsiqKHliaXrsACxGFvgxGJ08x5ZkWWEdrR2nPBXVjO6YoL7/LWFzPxY19TVX/siIwOW7HAzy+JEVVWY1IbEU5XMP5hgkch9q8hl63MwdK1kjcLAwGXODvb0wGlyEh+9Yq5kVoYk9dG1maxNtit2jynomvTchPDmHsxv8ZHL8bm5Y1mT/sSm/7b+uX2DJDSI/wG3/tFmeCiObQAAAABJRU5ErkJggg==">
@@ -20,587 +21,274 @@
   <title>Yong An Hong | Cybersecurity Portfolio</title>
 
   <style>
-    /* ===== Theme (dark only) ===== */
+    /* ===== Theme: light by default, dark when the device is in dark mode ===== */
     :root {
-      --bg: #07040d;
-      --card: #0f0919;
-      --text: #f1e9fb;
-      --muted: #a597ba;
+      --bg: #eef3f4;
+      --text: #111827;
+      --muted: #5b6770;
       --p: #9F00FF;
-      --pl: #c677ff;
-      --border: #2a1740;
-      color-scheme: dark;
-      padding-top: env(safe-area-inset-top,0px);
-      padding-bottom: env(safe-area-inset-bottom,0px);
+      --accent: #8a1fe0;
+      --glass: linear-gradient(135deg, rgba(255,255,255,.62), rgba(255,255,255,.28));
+      --glass-border: rgba(255,255,255,.8);
+      --glass-edge: inset 0 1px 1px rgba(255,255,255,.95), inset 0 -1px 1px rgba(255,255,255,.35);
+      --glass-shadow: 0 10px 36px rgba(70,40,130,.12);
+      --inner: rgba(255,255,255,.65);
+      --spec: .5;
+      --spring: transform .5s cubic-bezier(.34,1.56,.64,1), border-color .25s;
+      --line: rgba(17,24,39,.1);
+      color-scheme: light;
+      padding-top: env(safe-area-inset-top, 0px);
+      padding-bottom: env(safe-area-inset-bottom, 0px);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0b0a12;
+        --text: #f3eefc;
+        --muted: #a49bb8;
+        --accent: #c07bff;
+        --glass: linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.05));
+        --glass-border: rgba(255,255,255,.18);
+        --glass-edge: inset 0 1px 1px rgba(255,255,255,.28), inset 0 -1px 1px rgba(255,255,255,.06);
+        --glass-shadow: 0 10px 40px rgba(0,0,0,.45);
+        --inner: rgba(255,255,255,.07);
+        --spec: .2;
+        --line: rgba(255,255,255,.12);
+        color-scheme: dark;
+      }
     }
 
     /* ===== Base ===== */
-    html {
-      scroll-padding-top: env(safe-area-inset-top,0px);
-      scroll-behavior: smooth;
-    }
-    * {
-      box-sizing: border-box;
-    }
+    html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 90px); scroll-behavior: smooth; }
+    * { box-sizing: border-box; }
     body {
       margin: 0;
       background: var(--bg);
       color: var(--text);
-      font: 17px/1.7 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+      font: 400 16px/1.65 Inter, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
       overflow-x: hidden;
       -webkit-tap-highlight-color: transparent;
     }
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background: radial-gradient(600px 400px at 85% 8%,rgba(159,0,255,.35),transparent 70%),radial-gradient(500px 400px at 5% 60%,rgba(159,0,255,.14),transparent 70%), linear-gradient(rgba(159,0,255,.07) 1px,transparent 1px) 0 0/48px 48px,linear-gradient(90deg,rgba(159,0,255,.07) 1px,transparent 1px) 0 0/48px 48px;
-      -webkit-mask-image: linear-gradient(#000 40%,transparent 95%);
-      mask-image: linear-gradient(#000 40%,transparent 95%);
+    a { color: var(--accent); }
+    .wrap { max-width: 880px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+
+
+    /* ===== Moving colour background (the glass refracts it) ===== */
+    .bg { position: fixed; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+    .bg i {
+      position: absolute;
+      border-radius: 50%;
+      filter: blur(60px);
+      will-change: transform, translate;
+      animation: drift 16s ease-in-out infinite alternate;
     }
-    a {
-      color: var(--pl);
+    .bg i:nth-child(1) { width: 300px; height: 300px; top: -80px; right: -40px; background: rgba(159,0,255,.28); }
+    .bg i:nth-child(2) { width: 260px; height: 260px; top: 40%; left: -80px; background: rgba(0,170,255,.20); animation-duration: 20s; }
+    .bg i:nth-child(3) { width: 280px; height: 280px; bottom: -100px; right: 14%; background: rgba(255,80,170,.18); animation-duration: 24s; }
+    .bg i:nth-child(4) { width: 190px; height: 190px; top: 0; left: 0; margin: -95px 0 0 -95px; background: rgba(159,0,255,.2); animation: none; opacity: 0; transition: opacity .6s; }
+    .bg.live i:nth-child(4) { opacity: 1; }
+    @keyframes drift {
+      from { transform: scale(1) rotate(0deg); border-radius: 50% 50% 50% 50%; }
+      to   { transform: scale(1.18) rotate(25deg); border-radius: 58% 42% 55% 45%; }
     }
-    .wrap {
-      max-width: 960px;
-      margin: 0 auto;
-      padding: 0 24px;
-      position: relative;
-      z-index: 1;
+    @media (prefers-reduced-motion: reduce) { .bg i { animation: none; } }
+
+    /* ===== Glass surfaces (nav, cards, tiles, buttons) ===== */
+    nav, .feature, .link, .skill, .btn:not(.p) {
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-edge), var(--glass-shadow);
+      -webkit-backdrop-filter: blur(22px) saturate(180%);
+      backdrop-filter: blur(22px) saturate(180%);
+    }
+    @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+      nav, .feature, .link, .skill, .btn:not(.p) { background: var(--inner); }
     }
 
-    /* ===== Navigation ===== */
+    /* ===== Navigation (floating glass pill) ===== */
     nav {
+      position: sticky;
+      top: calc(env(safe-area-inset-top, 0px) + 14px);
+      z-index: 10;
+      margin-top: 18px;
+      padding: 9px 20px;
+      border-radius: 99px;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      padding: 26px 0;
     }
-    .logo {
-      font-family: Inter,system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
-      font-weight: 700;
-      font-size: 1.25rem;
-      letter-spacing: -.02em;
-      white-space: nowrap;
-      flex-shrink: 0;
-    }
-    .logo b {
-      color: var(--pl);
-    }
-    nav div a {
-      color: var(--muted);
-      text-decoration: none;
-      margin-left: 24px;
-      font-size: .95rem;
-      transition: .2s;
-    }
-    nav div a:hover {
-      color: var(--pl);
-    }
+    .logo { font-weight: 700; font-size: 1rem; letter-spacing: -.02em; white-space: nowrap; flex-shrink: 0; }
+    .logo b { color: var(--accent); }
+    nav div a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: .9rem; transition: color .2s; }
+    nav div a:hover { color: var(--text); }
 
     /* ===== Hero ===== */
-    .hero {
-      display: grid;
-      grid-template-columns: 1.7fr 1fr;
-      gap: 24px;
-      align-items: center;
-      padding: 90px 0 110px;
-    }
-    .eyebrow {
-      font: 600 .85rem ui-monospace,Menlo,Consolas,monospace;
-      color: var(--pl);
-      letter-spacing: .12em;
-      text-transform: uppercase;
-    }
-    h1 {
-      font-size: clamp(2.3rem,6.4vw,3.7rem);
-      line-height: 1.05;
-      margin: 16px 0 18px;
-      letter-spacing: -.03em;
-      white-space: nowrap;
-    }
-    h1 small {
-      display: block;
-      font-size: .62em;
-      font-weight: 700;
-      color: var(--muted);
-      letter-spacing: -.01em;
-      margin-top: 6px;
-    }
-    h1 span {
-      background: linear-gradient(90deg,#c677ff,#9F00FF);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      transition: filter .3s;
-    }
-    .role {
-      font: 1.15rem ui-monospace,Menlo,Consolas,monospace;
-      color: var(--text);
-      min-height: 1.8em;
-    }
-    .role::after {
-      content: "▌";
-      color: var(--p);
-      margin-left: 3px;
-      animation: b 1s steps(1) infinite;
-    }
-    @keyframes b {
-      50% {
-        opacity: 0;
-      }
-    }
-    .lead {
-      color: var(--muted);
-      max-width: 520px;
-      margin: 14px 0 0;
-    }
-    .btns {
-      display: flex;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-top: 30px;
-    }
-    .btn {
-      padding: 12px 24px;
-      border-radius: 99px;
-      text-decoration: none;
-      font-weight: 600;
-      border: 1px solid var(--border);
-      color: var(--text);
-      transition: .25s;
-      white-space: nowrap;
-      text-align: center;
-    }
-    .btn:hover {
-      border-color: var(--p);
-      box-shadow: 0 0 24px rgba(159,0,255,.45);
-      transform: translateY(-2px);
-    }
-    .btn.p {
-      background: var(--p);
-      border-color: var(--p);
-      color: #fff;
-      box-shadow: 0 0 28px rgba(159,0,255,.5);
-    }
-    .shield {
-      display: flex;
-      justify-content: center;
-      transition: transform .25s ease-out;
-    }
-    .shield svg {
-      width: min(280px,70%);
-      height: auto;
-      filter: drop-shadow(0 0 36px rgba(159,0,255,.65));
-      animation: f 6s ease-in-out infinite;
-    }
-    @keyframes f {
-      50% {
-        transform: translateY(-12px);
-      }
-    }
+    .hero { display: grid; grid-template-columns: 1.7fr 1fr; gap: 24px; align-items: center; padding: 56px 0 64px; }
+    .eyebrow { font-size: .8rem; font-weight: 600; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; }
+    h1 { font-size: clamp(2rem, 5.2vw, 3rem); line-height: 1.08; margin: 16px 0 18px; letter-spacing: -.035em; white-space: nowrap; }
+    h1 span { background: linear-gradient(90deg, #b44cff, #9F00FF); -webkit-background-clip: text; background-clip: text; color: transparent; }
+    h1 small { display: block; font-size: .6em; font-weight: 600; color: var(--muted); letter-spacing: -.02em; margin-top: 6px; }
+    .lead { color: var(--muted); max-width: 480px; margin: 0; font-size: 1rem; }
+    .shield { display: flex; justify-content: center; }
+    .shield svg { width: min(170px, 60%); height: auto; filter: drop-shadow(0 12px 28px rgba(159,0,255,.3)); }
+    .shield svg * { stroke: var(--p); }
+    .shield svg circle { fill: #fff; stroke: none; }
+
+    /* ===== Buttons ===== */
+    .btns { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 28px; }
+    .btn { padding: 9px 20px; border-radius: 99px; text-decoration: none; font-weight: 600; color: var(--text); white-space: nowrap; text-align: center; transition: var(--spring); }
+    .btn.p { background: var(--p); border: 1px solid var(--p); color: #fff; box-shadow: inset 0 1px 1px rgba(255,255,255,.4), 0 8px 22px rgba(159,0,255,.35); }
+    
 
     /* ===== Sections ===== */
-    section {
-      padding: 60px 0;
-    }
-    h2 {
-      font-size: .85rem;
-      font: 600 .85rem ui-monospace,Menlo,Consolas,monospace;
-      letter-spacing: .14em;
-      text-transform: uppercase;
-      color: var(--pl);
-      margin: 0 0 22px;
-    }
+    section { padding: 44px 0; }
+    h2 { font-size: 1.3rem; font-weight: 700; letter-spacing: -.02em; margin: 0 0 18px; }
 
     /* ===== About ===== */
-    .about {
-      display: grid;
-      grid-template-columns: 1.4fr 1fr;
-      gap: 40px;
-      align-items: start;
-    }
-    .about p {
-      margin: 0;
-      font-size: 1.25rem;
-      line-height: 1.6;
-    }
-    .facts {
-      list-style: none;
-      margin: 0;
-      padding: 0;
-      display: grid;
-      gap: 14px;
-    }
-    .facts li {
-      padding-left: 16px;
-      border-left: 2px solid var(--p);
-      color: var(--muted);
-    }
-    .facts b {
-      display: block;
-      color: var(--text);
-    }
+    .about { display: grid; grid-template-columns: 1.4fr 1fr; gap: 40px; align-items: start; }
+    .about p { margin: 0; font-size: 1.05rem; line-height: 1.65; }
+    .facts { list-style: none; margin: 0; padding: 0; display: grid; gap: 14px; }
+    .facts li { padding-left: 16px; border-left: 2px solid var(--p); color: var(--muted); }
+    .facts b { display: block; color: var(--text); }
 
     /* ===== Project cards ===== */
-    .feature {
-      background: radial-gradient(460px circle at var(--cx,-999px) var(--cy,-999px),rgba(159,0,255,.22),transparent 60%),linear-gradient(145deg,#150b25,var(--card));
-      border: 1px solid var(--border);
-      border-radius: 22px;
-      padding: 36px;
-      transition: .3s;
-      will-change: transform;
-    }
-    .feature:hover {
-      border-color: var(--p);
-      box-shadow: 0 0 50px rgba(159,0,255,.25);
-    }
-    .feature h3 {
-      font-size: 1.8rem;
-      margin: 0 0 10px;
-      letter-spacing: -.02em;
-    }
-    .feature p {
-      color: var(--muted);
-      margin: 0 0 24px;
-      max-width: 640px;
-    }
-    .stats {
-      display: flex;
-      gap: 40px;
-      flex-wrap: wrap;
-      margin-bottom: 28px;
-    }
-    .stats b {
-      display: block;
-      font-size: 2.4rem;
-      line-height: 1;
-      color: var(--pl);
-    }
-    .stats small {
-      color: var(--muted);
-    }
-
-    /* ===== Contact links ===== */
-    .links {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(200px,1fr));
-      gap: 14px;
-    }
-    .link {
-      display: block;
-      padding: 22px;
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      background: radial-gradient(280px circle at var(--cx,-999px) var(--cy,-999px),rgba(159,0,255,.3),transparent 65%),var(--card);
-      text-decoration: none;
-      color: var(--text);
-      transition: .25s;
-      will-change: transform;
-    }
-    .link:hover {
-      border-color: var(--p);
-      transform: translateY(-4px);
-      box-shadow: 0 12px 36px rgba(159,0,255,.25);
-    }
-    .link b {
-      display: block;
-      font-size: 1.1rem;
-    }
-    .link small {
-      color: var(--muted);
-    }
-
-    /* ===== Footer ===== */
-    footer {
-      padding: 40px 0 56px;
-      color: var(--muted);
-      font-size: .9rem;
-      text-align: center;
-    }
-
-    /* ===== Responsive ===== */
-    @media(max-width:760px) {
-      .hero,.about {
-        grid-template-columns: 1fr;
-      }
-      .hero {
-        padding: 50px 0 70px;
-      }
-      .shield {
-        order: -1;
-      }
-      .shield svg {
-        width: 150px;
-      }
-    }
-    body::after {
-      content: "";
-      position: fixed;
-      inset: 0;
-      z-index: 0;
-      pointer-events: none;
-      background: radial-gradient(380px circle at var(--mx,70%) var(--my,25%),rgba(159,0,255,.17),transparent 70%);
-    }
-    h1:hover span {
-      filter: drop-shadow(0 0 16px rgba(159,0,255,.8));
-    }
-
-    /* ===== Background network canvas ===== */
-    #net {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      pointer-events: none;
-    }
+    .feature { border-radius: 24px; padding: 24px; transition: var(--spring); }
+    .feature + .feature { margin-top: 18px; }
+    .feature h3 { font-size: 1.3rem; margin: 0 0 10px; letter-spacing: -.02em; }
+    .feature p { color: var(--muted); margin: 0 0 24px; max-width: 640px; }
+    .feature .btns { margin-top: 0; }
+    .stats { display: flex; gap: 40px; flex-wrap: wrap; margin-bottom: 26px; }
+    .stats b { display: block; font-size: 1.5rem; line-height: 1; color: var(--accent); }
+    .stats small { color: var(--muted); }
+    .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 0 0 22px; }
+    .chip { font-size: .8rem; padding: 3px 12px; border-radius: 99px; color: var(--accent); background: var(--inner); border: 1px solid var(--line); }
 
     /* ===== Website preview mock-ups ===== */
-    .mock {
-      display: block;
-      margin: 0 0 28px;
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      overflow: hidden;
-      text-decoration: none;
-      color: var(--text);
-      background: #1a1d22;
-      transition: .3s;
-    }
-    .mock:hover {
-      border-color: var(--p);
-      box-shadow: 0 0 36px rgba(159,0,255,.3);
-    }
-    .mbar {
-      display: flex;
-      align-items: center;
-      gap: 6px;
-      padding: 9px 12px;
-      background: #101216;
-    }
-    .mbar i {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: #454a52;
-    }
-    .mbar span {
-      flex: 1;
-      margin-left: 8px;
-      padding: 3px 12px;
-      border-radius: 99px;
-      background: #1a1d22;
-      color: var(--muted);
-      font-size: .75rem;
-    }
-    .mbody {
-      padding: 22px;
-    }
-    .mbody h4 {
-      margin: 0 0 4px;
-      font-size: 1.6rem;
-      letter-spacing: -.02em;
-    }
-    .mbody h4 em {
-      font-style: normal;
-      color: var(--pl);
-    }
-    .mbody p {
-      margin: 0 0 12px;
-      font-size: .82rem;
-      color: var(--muted);
-    }
-    .mchips {
-      display: flex;
-      gap: 6px;
-      margin-bottom: 10px;
-    }
-    .mchips b {
-      font-size: .7rem;
-      padding: 2px 10px;
-      border-radius: 99px;
-      border: 1px solid #343941;
-      font-weight: 500;
-    }
-    .mchips b:first-child {
-      background: var(--p);
-      border-color: var(--p);
-    }
-    .mrow {
-      display: flex;
-      justify-content: space-between;
-      gap: 10px;
-      padding: 9px 12px;
-      margin-top: 6px;
-      border-radius: 8px;
-      background: #22262c;
-      font-size: .8rem;
-    }
-    .mrow small {
-      color: var(--muted);
+    .mock { display: block; margin: 0 0 26px; border: 1px solid var(--line); border-radius: 16px; overflow: hidden; text-decoration: none; color: var(--text); background: var(--inner); transition: border-color .25s; }
+    .mbar { display: flex; align-items: center; gap: 6px; padding: 9px 12px; border-bottom: 1px solid var(--line); }
+    .mbar i { width: 9px; height: 9px; border-radius: 50%; background: var(--line); }
+    .mbar span { flex: 1; margin-left: 8px; padding: 3px 12px; border-radius: 99px; background: var(--inner); color: var(--muted); font-size: .75rem; }
+    .mbody { padding: 16px; }
+    .mbody h4 { margin: 0 0 4px; font-size: 1.15rem; letter-spacing: -.02em; }
+    .mbody h4 em { font-style: normal; color: var(--accent); }
+    .mbody p { margin: 0 0 12px; font-size: .82rem; color: var(--muted); }
+    .mchips { display: flex; gap: 6px; margin-bottom: 10px; }
+    .mchips b { font-size: .7rem; padding: 2px 10px; border-radius: 99px; border: 1px solid var(--line); font-weight: 500; }
+    .mchips b:first-child { background: var(--p); border-color: var(--p); color: #fff; }
+    .mrow { display: flex; justify-content: space-between; gap: 10px; padding: 9px 12px; margin-top: 6px; border-radius: 10px; background: var(--inner); border: 1px solid var(--line); font-size: .8rem; }
+    .mrow small { color: var(--muted); }
+    .mfield { display: flex; justify-content: space-between; align-items: center; padding: 11px 14px; border-radius: 10px; background: var(--inner); border: 1px solid var(--line); font-size: .85rem; letter-spacing: .15em; margin-bottom: 12px; }
+    .mfield small { letter-spacing: 0; color: var(--muted); }
+    .meter { display: grid; grid-template-columns: repeat(4, 1fr); gap: 6px; }
+    .meter i { height: 6px; border-radius: 99px; background: var(--line); }
+    .meter i.on { background: var(--p); }
+
+    /* ===== Toolkit ===== */
+    .cat { margin-bottom: 20px; }
+    .cat h3 { margin: 0 0 12px; font-size: .9rem; font-weight: 600; color: var(--muted); letter-spacing: .04em; }
+    .skills { display: flex; flex-wrap: wrap; gap: 12px; }
+    .skill { display: flex; align-items: center; gap: 12px; padding: 9px 16px; border-radius: 16px; font-weight: 600; font-size: .95rem; transition: var(--spring); }
+    .skill svg { width: 22px; height: 22px; fill: var(--text); flex-shrink: 0; }
+
+    /* ===== Contact links ===== */
+    .links { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+    .link { display: block; padding: 16px 18px; border-radius: 18px; text-decoration: none; color: var(--text); transition: var(--spring); }
+    .link b { display: block; font-size: 1rem; }
+    .link small { color: var(--muted); }
+
+    /* ===== Footer ===== */
+    footer { padding: 40px 0 56px; color: var(--muted); font-size: .9rem; text-align: center; }
+
+    /* ===== Hover (mouse) and tap (touch) feedback ===== */
+    .feature:hover, .link:hover, .skill:hover, .mock:hover, .btn:not(.p):hover,
+    .feature.tap, .link.tap, .skill.tap, .mock.tap, .btn.tap { border-color: var(--p); }
+    
+    .btn { -webkit-user-select: none; user-select: none; }
+    @media (hover: none) {
+      .feature:hover, .link:hover, .skill:hover, .mock:hover, .btn:hover { transform: none; border-color: var(--glass-border); }
+      .btn.p:hover { border-color: var(--p); }
+      .mock:hover { border-color: var(--line); }
+      .feature, .link, .skill, .mock, .btn { transition: border-color .4s ease, transform .4s ease; }
+      .feature.tap, .link.tap, .skill.tap, .mock.tap, .btn.tap { border-color: var(--p); }
     }
 
-    /* ===== Skills ===== */
-    .cat {
-      margin-bottom: 26px;
+
+    /* ===== Liquid Glass: light that follows the pointer + springy motion ===== */
+    .feature, .link, .skill, .btn { position: relative; }
+    nav, .feature, .link, .skill, .btn { --gx: 50%; --gy: 0%; --r: 220px; }
+    .feature { --r: 420px; }
+
+    /* ::before = soft sheen under the pointer, ::after = bright rim light on the edge */
+    nav::before, .feature::before, .link::before, .skill::before, .btn::before,
+    nav::after,  .feature::after,  .link::after,  .skill::after,  .btn::after {
+      content: "";
+      position: absolute;
+      inset: -1px;
+      border-radius: inherit;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity .4s ease;
     }
-    .cat h3 {
-      margin: 0 0 12px;
-      font-size: .9rem;
-      font-weight: 600;
-      color: var(--muted);
-      letter-spacing: .04em;
+    nav::before, .feature::before, .link::before, .skill::before, .btn::before {
+      background: radial-gradient(var(--r) circle at var(--gx) var(--gy), rgba(255,255,255,var(--spec)), transparent 65%);
     }
-    .skills {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 14px;
+    nav::after, .feature::after, .link::after, .skill::after, .btn::after {
+      padding: 1.5px;
+      background: radial-gradient(calc(var(--r) * .7) circle at var(--gx) var(--gy), rgba(255,255,255,.95), rgba(255,255,255,.08) 70%);
+      -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+      -webkit-mask-composite: xor;
+      mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
     }
-    .skill {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      padding: 14px 22px;
-      border: 1px solid var(--border);
-      border-radius: 14px;
-      background: var(--card);
-      font-weight: 600;
-      transition: .25s;
-    }
-    .skill:hover {
-      border-color: var(--p);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 30px rgba(159,0,255,.25);
-    }
-    .skill svg {
-      width: 26px;
-      height: 26px;
-      fill: var(--text);
-      flex-shrink: 0;
-    }
-    .skill, .link, .btn, .mock {
-      user-select: none;
-      -webkit-user-select: none;
-      -webkit-touch-callout: none;
+    nav:hover::before, .feature:hover::before, .link:hover::before, .skill:hover::before, .btn:hover::before,
+    nav:hover::after,  .feature:hover::after,  .link:hover::after,  .skill:hover::after,  .btn:hover::after,
+    .tap::before, .tap::after { opacity: 1; }
+
+    /* Springy scale: grows under the mouse, squishes when pressed (like iOS) */
+    .feature:hover { transform: scale(1.005); }
+    .link:hover, .skill:hover { transform: translateY(-2px) scale(1.02); }
+    .btn:hover { transform: scale(1.03); }
+    .feature:active, .link:active, .skill:active, .btn:active { transform: scale(.97); }
+
+    /* Sliding glass highlight behind the menu link you point at */
+    nav div { position: relative; }
+    nav div a { position: relative; z-index: 1; }
+    .pill {
+      position: absolute;
+      top: -7px;
+      bottom: -7px;
+      left: 0;
+      width: 0;
+      border-radius: 99px;
+      background: var(--glass);
+      border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-edge), 0 4px 14px rgba(159,0,255,.18);
+      opacity: 0;
+      pointer-events: none;
+      transition: left .5s cubic-bezier(.34,1.4,.64,1), width .5s cubic-bezier(.34,1.4,.64,1), opacity .25s;
     }
 
-    /* ===== Touch devices: no sticky hover, brief tap outline ===== */
-    @media(hover:none) {
-      .skill:hover,.link:hover,.feature:hover,.mock:hover {
-        border-color: var(--border);
-        box-shadow: none;
-        transform: none;
-      }
-      .btn:not(.p):hover {
-        border-color: var(--border);
-        box-shadow: none;
-        transform: none;
-      }
-      .btn.p:hover {
-        transform: none;
-      }
-      nav div a:hover {
-        color: var(--muted);
-      }
-      .skill, .link, .mock, .feature, .btn {
-        transition: border-color .4s ease, box-shadow .4s ease, transform .4s ease;
-      }
+    @media (hover: none) { .pill { display: none; } }
+
+    /* ===== Responsive ===== */
+    @media (max-width: 760px) {
+      .hero, .about { grid-template-columns: 1fr; }
+      .hero { padding: 32px 0 40px; }
+      .shield { order: -1; }
+      .shield svg { width: 100px; }
     }
-    .skill.tap, .link.tap, .mock.tap, .feature.tap, .btn.tap {
-      border-color: var(--p);
-      box-shadow: 0 0 24px rgba(159,0,255,.4);
+    @media (max-width: 560px) {
+      nav { flex-direction: column; align-items: flex-start; gap: 6px; border-radius: 26px; padding: 14px 20px; }
+      nav div { display: flex; flex-wrap: wrap; gap: 2px 18px; }
+      nav div a { margin-left: 0; }
     }
-    .skill.tap, .link.tap {
-      transform: translateY(-3px);
-    }
-    .feature .btns {
-      margin-top: 0;
-    }
-    @media(max-width:560px) {
-      nav {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 8px;
-      }
-      nav div {
-        display: flex;
-        flex-wrap: wrap;
-        gap: 4px 18px;
-      }
-      nav div a {
-        margin-left: 0;
-      }
-    }
-    .chips {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 8px;
-      margin: 0 0 22px;
-    }
-    .chip {
-      font-size: .8rem;
-      padding: 3px 12px;
-      border-radius: 99px;
-      border: 1px solid var(--border);
-      color: var(--pl);
-      background: rgba(159,0,255,.1);
-    }
-    .feature+.feature {
-      margin-top: 24px;
-    }
-    .mfield {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 11px 14px;
-      border-radius: 8px;
-      background: #22262c;
-      border: 1px solid #343941;
-      font-size: .85rem;
-      letter-spacing: .15em;
-      margin-bottom: 12px;
-    }
-    .mfield small {
-      letter-spacing: 0;
-      color: var(--muted);
-    }
-    .meter {
-      display: grid;
-      grid-template-columns: repeat(4,1fr);
-      gap: 6px;
-      margin-bottom: 8px;
-    }
-    .meter i {
-      height: 6px;
-      border-radius: 99px;
-      background: #343941;
-    }
-    .meter i.on {
-      background: linear-gradient(90deg,#9F00FF,#c677ff);
-      box-shadow: 0 0 10px rgba(159,0,255,.6);
-    }
-    @media(max-width:520px) {
-      .feature {
-        padding: 24px;
-      }
-      .feature .btns .btn {
-        flex: 1 1 100%;
-      }
-    }
-    @media(prefers-reduced-motion:reduce) {
-      .shield svg,.role::after {
-        animation: none;
-      }
+    @media (max-width: 520px) {
+      .feature { padding: 18px; }
+      .feature .btns .btn { flex: 1 1 100%; }
     }
   </style>
 </head>
 
 <body>
-  <canvas id="net"></canvas>
-
+  <div class="bg" aria-hidden="true"><i></i><i></i><i></i><i></i></div>
   <div class="wrap">
 
     <!-- ================= Navigation ================= -->
@@ -608,8 +296,8 @@
       <span class="logo">Yong An <b>Hong</b></span>
       <div>
         <a href="#about">About</a>
-        <a href="#projects">Project</a>
-        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#skills">Toolkit</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -619,7 +307,6 @@
       <div>
         <div class="eyebrow">Cybersecurity · AUPP · Year 1</div>
         <h1>Hi, I’m <span>Yong An</span>.<small>Cybersecurity student.</small></h1>
-        <div class="role" id="role"></div>
         <p class="lead">Learning how systems break so I can help keep them secure.</p>
         <div class="btns">
           <a class="btn p" href="https://github.com/itzyongan" target="_blank" rel="noopener">View GitHub</a>
@@ -705,7 +392,7 @@
 
     <!-- ================= Skills ================= -->
     <section id="skills">
-      <h2>Skills</h2>
+      <h2>Toolkit</h2>
       <div class="cat">
         <h3>Development</h3>
         <div class="skills">
@@ -773,36 +460,10 @@
     (() => {
       'use strict';
 
-      const root = document.documentElement;
       const canHover = matchMedia('(hover: hover)').matches;
-      const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
-      const mouse = { x: -999, y: -999 };
 
 
-      /* ===== 1. Typing effect for the role line ===== */
-      const roleEl = document.getElementById('role');
-      const roles = ['Aspiring security analyst', 'Learning ethical hacking', 'Minecraft community builder'];
-
-      function typeRoles() {
-        let role = 0, chars = 0, deleting = false;
-
-        (function tick() {
-          const text = roles[role];
-          chars += deleting ? -1 : 1;
-          roleEl.textContent = text.slice(0, chars);
-
-          let delay = deleting ? 30 : 70;
-          if (!deleting && chars === text.length) { deleting = true; delay = 1400; }
-          else if (deleting && chars === 0) { deleting = false; role = (role + 1) % roles.length; delay = 300; }
-          setTimeout(tick, delay);
-        })();
-      }
-
-      if (reducedMotion) roleEl.textContent = roles[0];
-      else typeRoles();
-
-
-      /* ===== 2. Smooth scroll for menu links (keeps the URL free of #hash) ===== */
+      /* ===== 1. Smooth scroll for menu links (keeps the URL free of #hash) ===== */
       document.querySelectorAll('a[href^="#"]').forEach((link) => {
         link.addEventListener('click', (e) => {
           const target = document.getElementById(link.getAttribute('href').slice(1));
@@ -813,7 +474,7 @@
       });
 
 
-      /* ===== 3. Touch screens: flash the outline briefly after a tap ===== */
+      /* ===== 2. Touch screens: flash the outline briefly after a tap ===== */
       const TAP_OUTLINE_MS = 600;   // 0.6s visible + 0.4s CSS fade = gone after 1 second
 
       addEventListener('pointerdown', (e) => {
@@ -826,147 +487,70 @@
       }, true);
 
 
-      /* ===== 4. Mouse effects (skipped on touch-only devices) ===== */
-      if (canHover) {
-        const shield = document.querySelector('.shield');
-        let frameQueued = false;
+      /* ===== 3. Liquid Glass motion (mouse devices only) ===== */
+      if (!canHover) return;
 
-        // Cursor glow + shield parallax, at most once per frame
-        function applyMouse() {
-          frameQueued = false;
-          root.style.setProperty('--mx', mouse.x + 'px');
-          root.style.setProperty('--my', mouse.y + 'px');
+      const GLASS = 'nav, .feature, .link, .skill, .btn';
 
-          const dx = mouse.x / innerWidth - 0.5;
-          const dy = mouse.y / innerHeight - 0.5;
-          shield.style.transform = `translate(${dx * -36}px, ${dy * -36}px) rotate(${dx * 6}deg)`;
-        }
+      // 3a. Highlight on glass surfaces follows the pointer
+      addEventListener('pointermove', (e) => {
+        if (e.pointerType !== 'mouse') return;
+        const glass = e.target.closest(GLASS);
+        if (!glass) return;
 
-        addEventListener('mousemove', (e) => {
-          mouse.x = e.clientX;
-          mouse.y = e.clientY;
-          if (!frameQueued) { frameQueued = true; requestAnimationFrame(applyMouse); }
-        });
-        document.addEventListener('mouseleave', () => { mouse.x = mouse.y = -999; });
-
-        // 3D tilt + spotlight on cards
-        document.querySelectorAll('.feature, .link').forEach((card) => {
-          const tilt = card.classList.contains('feature') ? 3 : 9;
-
-          card.addEventListener('mousemove', (e) => {
-            const box = card.getBoundingClientRect();
-            const x = e.clientX - box.left;
-            const y = e.clientY - box.top;
-
-            card.style.setProperty('--cx', x + 'px');
-            card.style.setProperty('--cy', y + 'px');
-            card.style.transform = `perspective(800px) rotateX(${(y / box.height - 0.5) * -tilt}deg) ` +
-                                   `rotateY(${(x / box.width - 0.5) * tilt}deg) translateY(-4px)`;
-          });
-          card.addEventListener('mouseleave', () => { card.style.transform = ''; });
-        });
-      }
-
-
-      /* ===== 5. Background network: dots that react to the mouse ===== */
-      const canvas = document.getElementById('net');
-      const ctx = canvas.getContext('2d');
-
-      const MAX_DOTS = canHover ? 110 : 45;   // fewer dots on phones to save battery
-      const MOUSE_RANGE_SQ = 190 * 190;       // cursor attracts dots inside this radius
-      const LINK_RANGE_SQ = 11000;            // dot-to-dot line distance
-      const BURST_RANGE = 260;                // click explosion radius
-
-      let width, height, dots = [], running = true;
-
-      function setupDots() {
-        width = canvas.width = innerWidth;
-        height = canvas.height = innerHeight;
-        const count = Math.min(MAX_DOTS, Math.floor(width * height / 14000));
-        dots = Array.from({ length: count }, () => ({
-          x: Math.random() * width,
-          y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.5,
-          vy: (Math.random() - 0.5) * 0.5,
-        }));
-      }
-
-      function line(x1, y1, x2, y2, rgb, alpha) {
-        ctx.strokeStyle = `rgba(${rgb},${alpha})`;
-        ctx.beginPath();
-        ctx.moveTo(x1, y1);
-        ctx.lineTo(x2, y2);
-        ctx.stroke();
-      }
-
-      function moveDot(d) {
-        const dx = mouse.x - d.x, dy = mouse.y - d.y;
-        const distSq = dx * dx + dy * dy;
-
-        if (distSq < MOUSE_RANGE_SQ) {            // pull toward the cursor
-          const dist = Math.sqrt(distSq);
-          d.vx += dx / dist * 0.035;
-          d.vy += dy / dist * 0.035;
-          line(d.x, d.y, mouse.x, mouse.y, '198,119,255', (1 - dist / 190) * 0.8);
-        }
-
-        d.vx *= 0.985;                             // friction, plus a gentle idle drift
-        d.vy *= 0.985;
-        if (d.vx * d.vx + d.vy * d.vy < 0.0324) {
-          d.vx += (Math.random() - 0.5) * 0.03;
-          d.vy += (Math.random() - 0.5) * 0.03;
-        }
-
-        d.x += d.vx;
-        d.y += d.vy;
-        if (d.x < 0 || d.x > width) d.vx *= -1;    // bounce off edges
-        if (d.y < 0 || d.y > height) d.vy *= -1;
-      }
-
-      function frame() {
-        if (!running) return;
-        ctx.clearRect(0, 0, width, height);
-
-        for (let i = 0; i < dots.length; i++) {
-          const d = dots[i];
-          moveDot(d);
-
-          for (let j = i + 1; j < dots.length; j++) {
-            const dx = d.x - dots[j].x, dy = d.y - dots[j].y;
-            const distSq = dx * dx + dy * dy;
-            if (distSq < LINK_RANGE_SQ) line(d.x, d.y, dots[j].x, dots[j].y, '159,0,255', (1 - distSq / LINK_RANGE_SQ) * 0.45);
-          }
-
-          ctx.fillStyle = 'rgba(198,119,255,.85)';
-          ctx.beginPath();
-          ctx.arc(d.x, d.y, 1.8, 0, Math.PI * 2);
-          ctx.fill();
-        }
-        requestAnimationFrame(frame);
-      }
-
-      // Click: push nearby dots outward
-      addEventListener('mousedown', (e) => {
-        for (const d of dots) {
-          const dx = d.x - e.clientX, dy = d.y - e.clientY;
-          const dist = Math.hypot(dx, dy) || 1;
-          if (dist < BURST_RANGE) {
-            d.vx += dx / dist * (BURST_RANGE - dist) / 22;
-            d.vy += dy / dist * (BURST_RANGE - dist) / 22;
-          }
-        }
+        const box = glass.getBoundingClientRect();
+        glass.style.setProperty('--gx', (e.clientX - box.left) + 'px');
+        glass.style.setProperty('--gy', (e.clientY - box.top) + 'px');
       });
 
-      // Stop drawing while the tab is hidden
-      document.addEventListener('visibilitychange', () => {
-        running = !document.hidden;
-        if (running) requestAnimationFrame(frame);
-      });
+      // 3b. Sliding glass pill behind the menu link under the pointer
+      const menu = document.querySelector('nav div');
+      const pill = document.createElement('span');
+      pill.className = 'pill';
+      menu.prepend(pill);
 
-      addEventListener('resize', setupDots);
-      setupDots();
-      requestAnimationFrame(frame);
-    })();
+      menu.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('mouseenter', () => {
+          pill.style.left = (link.offsetLeft - 12) + 'px';
+          pill.style.width = (link.offsetWidth + 24) + 'px';
+          pill.style.opacity = 1;
+        });
+      });
+      menu.addEventListener('mouseleave', () => { pill.style.opacity = 0; });
+
+      // 3c. Background colour blobs shift with the mouse (parallax) and one follows it closely
+  const bg = document.querySelector('.bg');
+  const blobs = [...bg.children];
+  const depth = [-0.06, 0.05, -0.04];            // how far each blob moves, and which way
+  const mouse = { x: innerWidth / 2, y: innerHeight / 2 };
+  const follow = { x: mouse.x, y: mouse.y };
+  let running = false;
+
+  function moveBackground() {
+    const cx = mouse.x - innerWidth / 2, cy = mouse.y - innerHeight / 2;
+
+    blobs.slice(0, 3).forEach((blob, i) => {
+      blob.style.translate = `${cx * depth[i]}px ${cy * depth[i]}px`;
+    });
+
+    const dx = mouse.x - follow.x, dy = mouse.y - follow.y;   // smooth, lagging follower
+    follow.x += dx * 0.07;
+    follow.y += dy * 0.07;
+    blobs[3].style.translate = `${follow.x}px ${follow.y}px`;
+
+    if (Math.hypot(dx, dy) > 0.5) requestAnimationFrame(moveBackground);
+    else running = false;
+  }
+
+  addEventListener('pointermove', (e) => {
+    if (e.pointerType !== 'mouse') return;
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+    bg.classList.add('live');
+    if (!running) { running = true; requestAnimationFrame(moveBackground); }
+  });
+  document.addEventListener('mouseleave', () => bg.classList.remove('live'));
+})();
   </script>
 </body>
 </html>
