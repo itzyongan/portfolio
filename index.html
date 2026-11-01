@@ -191,16 +191,10 @@
     footer { padding: 40px 0 56px; color: var(--muted); font-size: .9rem; text-align: center; }
 
     /* ===== Hover (mouse) and tap (touch) feedback ===== */
-    .feature:hover, .link:hover, .skill:hover, .mock:hover, .btn:not(.p):hover,
-    .feature.tap, .link.tap, .skill.tap, .mock.tap, .btn.tap { border-color: var(--p); }
-    
     .btn { -webkit-user-select: none; user-select: none; }
     @media (hover: none) {
-      .feature:hover, .link:hover, .skill:hover, .mock:hover, .btn:hover { transform: none; border-color: var(--glass-border); }
-      .btn.p:hover { border-color: var(--p); }
-      .mock:hover { border-color: var(--line); }
-      .feature, .link, .skill, .mock, .btn { transition: border-color .4s ease, transform .4s ease; }
-      .feature.tap, .link.tap, .skill.tap, .mock.tap, .btn.tap { border-color: var(--p); }
+      .feature:hover, .link:hover, .skill:hover, .btn:hover { transform: none; }
+      .feature, .link, .skill, .mock, .btn { transition: transform .4s ease; }
     }
 
 
