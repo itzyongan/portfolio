@@ -154,7 +154,20 @@
     h1 small { display: block; font-size: .6em; font-weight: 600; color: var(--muted); letter-spacing: -.02em; margin-top: 6px; }
     .lead { color: var(--muted); max-width: 480px; margin: 0; font-size: 1rem; }
     .shield { display: flex; justify-content: center; }
-    .shield svg { width: min(170px, 60%); height: auto; filter: drop-shadow(0 12px 28px rgba(159,0,255,.3)); }
+    .shield svg {
+      --mx: 0; --my: 0; --prox: 0;   /* set by JS: pointer direction (-1..1) and closeness (0..1) */
+      width: min(170px, 60%);
+      height: auto;
+      transform: perspective(600px) rotateX(calc(var(--my) * -16deg)) rotateY(calc(var(--mx) * 16deg)) scale(calc(1 + var(--prox) * .07));
+      filter: drop-shadow(0 12px calc(28px + var(--prox) * 16px) rgba(159,0,255,calc(.3 + var(--prox) * .3)));
+      transition: transform .3s ease-out, filter .4s ease-out;
+    }
+    /* Layers move by different amounts, so the shield feels 3D */
+    .shield .s-inner { transform: translate(calc(var(--mx) * 5px), calc(var(--my) * 5px)); transition: transform .3s ease-out; }
+    .shield .s-lock  { transform: translate(calc(var(--mx) * 9px), calc(var(--my) * 9px)); transition: transform .3s ease-out; }
+    /* The lock's shackle pops open as the pointer gets close */
+    .shield .s-shackle { transform: translate(calc(var(--mx) * 9px), calc(var(--my) * 9px - var(--prox) * 7px)); transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
+    @media (prefers-reduced-motion: reduce) { .shield svg, .shield .s-inner, .shield .s-lock, .shield .s-shackle { transition: none; } }
     .shield svg * { stroke: var(--p); }
     .shield svg circle { fill: #fff; stroke: none; }
 
@@ -358,7 +371,7 @@
         </div>
       </div>
       <div class="shield" aria-hidden="true">
-        <svg viewBox="0 0 200 240" fill="none" stroke="#c677ff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M100 12 28 40v68c0 54 34 96 72 120 38-24 72-66 72-120V40z" fill="rgba(159,0,255,.14)"/><path d="M100 36 50 56v52c0 40 24 72 50 90 26-18 50-50 50-90V56z" stroke-opacity=".45"/><rect x="74" y="98" width="52" height="40" rx="7" fill="#9F00FF" stroke="#c677ff"/><path d="M84 98V84a16 16 0 0 1 32 0v14"/><circle cx="100" cy="118" r="5" fill="#fff" stroke="none"/></svg>
+        <svg viewBox="0 0 200 240" fill="none" stroke="#c677ff" stroke-width="3" stroke-linejoin="round" stroke-linecap="round"><path d="M100 12 28 40v68c0 54 34 96 72 120 38-24 72-66 72-120V40z" fill="rgba(159,0,255,.14)"/><path class="s-inner" d="M100 36 50 56v52c0 40 24 72 50 90 26-18 50-50 50-90V56z" stroke-opacity=".45"/><rect class="s-lock" x="74" y="98" width="52" height="40" rx="7" fill="#9F00FF" stroke="#c677ff"/><path class="s-shackle" d="M84 98V84a16 16 0 0 1 32 0v14"/><circle class="s-lock" cx="100" cy="118" r="5" fill="#fff" stroke="none"/></svg>
       </div>
     </header>
 
@@ -590,6 +603,36 @@
         });
       });
       menu.addEventListener('mouseleave', () => { pill.style.opacity = 0; });
+
+      // 3d. Shield reacts to the pointer when it is anywhere near it
+      const shield = document.querySelector('.shield svg');
+      if (shield && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        const REACH = 360;                         // how far (px) from the shield it starts reacting
+        let sx = 0, sy = 0, queued = false;
+
+        const setShield = (mx, my, prox) => {
+          shield.style.setProperty('--mx', mx.toFixed(3));
+          shield.style.setProperty('--my', my.toFixed(3));
+          shield.style.setProperty('--prox', prox.toFixed(3));
+        };
+        const updateShield = () => {
+          queued = false;
+          const box = shield.getBoundingClientRect();
+          const dx = sx - (box.left + box.width / 2);
+          const dy = sy - (box.top + box.height / 2);
+          const prox = Math.max(0, 1 - Math.hypot(dx, dy) / REACH);
+          if (prox === 0) return setShield(0, 0, 0);
+          const clamp = (v) => Math.max(-1, Math.min(1, v));
+          setShield(clamp(dx / (REACH * .6)), clamp(dy / (REACH * .6)), prox);
+        };
+
+        addEventListener('pointermove', (e) => {
+          if (e.pointerType !== 'mouse') return;
+          sx = e.clientX; sy = e.clientY;
+          if (!queued) { queued = true; requestAnimationFrame(updateShield); }
+        });
+        document.addEventListener('mouseleave', () => setShield(0, 0, 0));
+      }
 
       // 3c. Background colour blobs shift slightly with the mouse (parallax)
       const blobs = [...document.querySelector('.bg').children];
