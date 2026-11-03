@@ -172,8 +172,12 @@
       height: auto;
       transform: perspective(600px) rotateX(calc(var(--my) * -16deg)) rotateY(calc(var(--mx) * 16deg)) scale(calc(1 + var(--prox) * .07));
       filter: drop-shadow(0 12px calc(28px + var(--prox) * 16px) rgba(159,0,255,calc(.3 + var(--prox) * .3)));
-      transition: transform .3s ease-out, filter .4s ease-out;
+      transition: transform .3s ease-out, filter .4s ease-out, scale .5s cubic-bezier(.34,1.56,.64,1);
+      cursor: pointer;
+      -webkit-user-select: none; user-select: none;
     }
+    /* Click / tap: squish in, then spring back out (same feel as the buttons) */
+    .shield svg.press { scale: .9; }
     /* Layers move by different amounts, so the shield feels 3D */
     .shield .s-inner { transform: translate(calc(var(--mx) * 5px), calc(var(--my) * 5px)); transition: transform .3s ease-out; }
     .shield .s-lock  { transform: translate(calc(var(--mx) * 9px), calc(var(--my) * 9px)); transition: transform .3s ease-out; }
@@ -616,6 +620,15 @@
         item.classList.add('tap');
         setTimeout(() => item.classList.remove('tap'), TAP_OUTLINE_MS);
       }, true);
+
+
+      /* ===== 2b. Shield: squish when pressed, spring back when released (mouse and touch) ===== */
+      const shieldEl = document.querySelector('.shield svg');
+      if (shieldEl) {
+        const press = (on) => shieldEl.classList.toggle('press', on);
+        shieldEl.addEventListener('pointerdown', () => press(true));
+        ['pointerup', 'pointercancel', 'pointerleave'].forEach((t) => shieldEl.addEventListener(t, () => press(false)));
+      }
 
 
       /* ===== 3. Liquid Glass motion (mouse devices only) ===== */
