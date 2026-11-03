@@ -82,7 +82,6 @@
       from { transform: scale(1) rotate(0deg); border-radius: 50% 50% 50% 50%; }
       to   { transform: scale(1.18) rotate(25deg); border-radius: 58% 42% 55% 45%; }
     }
-    @media (prefers-reduced-motion: reduce) { .bg i, .role::after { animation: none; } }
 
     /* ===== Glass surfaces (nav, cards, tiles, buttons) ===== */
     nav, .feature, .link, .skill, .btn:not(.p) {
@@ -180,7 +179,6 @@
     .shield .s-lock  { transform: translate(calc(var(--mx) * 9px), calc(var(--my) * 9px)); transition: transform .3s ease-out; }
     /* The lock's shackle pops open as the pointer gets close */
     .shield .s-shackle { transform: translate(calc(var(--mx) * 9px), calc(var(--my) * 9px - var(--prox) * 7px)); transition: transform .45s cubic-bezier(.34,1.56,.64,1); }
-    @media (prefers-reduced-motion: reduce) { .shield svg, .shield .s-inner, .shield .s-lock, .shield .s-shackle { transition: none; } }
     .shield svg * { stroke: var(--p); }
     .shield svg circle { fill: #fff; stroke: none; }
 
@@ -551,20 +549,16 @@
       const roleEl = document.getElementById("role");
       if (roleEl) {
         const roles = ["Aspiring security analyst", "Learning ethical hacking", "Minecraft community builder"];
-        if (matchMedia("(prefers-reduced-motion: reduce)").matches) {
-          roleEl.textContent = roles[0];
-        } else {
-          let i = 0, j = 0, del = false;
-          (function tick() {
-            const s = roles[i];
-            j += del ? -1 : 1;
-            roleEl.textContent = s.slice(0, j);
-            let d = del ? 30 : 70;
-            if (!del && j === s.length) { del = true; d = 1400; }
-            else if (del && j === 0) { del = false; i = (i + 1) % roles.length; d = 300; }
-            setTimeout(tick, d);
-          })();
-        }
+        let i = 0, j = 0, del = false;
+        (function tick() {
+          const s = roles[i];
+          j += del ? -1 : 1;
+          roleEl.textContent = s.slice(0, j);
+          let d = del ? 30 : 70;
+          if (!del && j === s.length) { del = true; d = 1400; }
+          else if (del && j === 0) { del = false; i = (i + 1) % roles.length; d = 300; }
+          setTimeout(tick, d);
+        })();
       }
 
 
@@ -655,10 +649,10 @@
       });
       menu.addEventListener('mouseleave', () => { pill.style.opacity = 0; });
 
-      // 3d. Shield reacts to the pointer when it is anywhere near it
+      // 3d. Shield reacts to the pointer anywhere on the page
       const shield = document.querySelector('.shield svg');
-      if (shield && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        const REACH = 360;                         // how far (px) from the shield it starts reacting
+      if (shield) {
+        const NEAR = 360;                          // within this distance (px) the shield reacts most
         let sx = 0, sy = 0, queued = false;
 
         const setShield = (mx, my, prox) => {
@@ -666,15 +660,15 @@
           shield.style.setProperty('--my', my.toFixed(3));
           shield.style.setProperty('--prox', prox.toFixed(3));
         };
+        const clamp = (v) => Math.max(-1, Math.min(1, v));
         const updateShield = () => {
           queued = false;
           const box = shield.getBoundingClientRect();
           const dx = sx - (box.left + box.width / 2);
           const dy = sy - (box.top + box.height / 2);
-          const prox = Math.max(0, 1 - Math.hypot(dx, dy) / REACH);
-          if (prox === 0) return setShield(0, 0, 0);
-          const clamp = (v) => Math.max(-1, Math.min(1, v));
-          setShield(clamp(dx / (REACH * .6)), clamp(dy / (REACH * .6)), prox);
+          const near = Math.max(0, 1 - Math.hypot(dx, dy) / NEAR);
+          const prox = .35 + near * .65;           // always alive, strongest when close
+          setShield(clamp(dx / (innerWidth / 2)), clamp(dy / (innerHeight / 2)), prox);
         };
 
         addEventListener('pointermove', (e) => {
