@@ -52,7 +52,7 @@
     }
 
     /* ===== Base ===== */
-    html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 90px); scroll-behavior: smooth; }
+    html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 90px); scroll-behavior: smooth; touch-action: manipulation; }
     * { box-sizing: border-box; }
     body {
       margin: 0;
@@ -252,6 +252,10 @@
     footer { padding: 40px 0 56px; color: var(--muted); font-size: .9rem; text-align: center; }
 
     /* ===== Hover (mouse) and tap (touch) feedback ===== */
+    /* Touch screens: rapid taps on empty space must not zoom, select text or nudge the page */
+    @media (hover: none) {
+      body { -webkit-user-select: none; user-select: none; -webkit-touch-callout: none; }
+    }
     .btn { -webkit-user-select: none; user-select: none; }
     @media (hover: none) {
       .feature:hover, .link:hover, .skill:hover, .btn:hover { transform: none; }
