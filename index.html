@@ -12,11 +12,16 @@
 
   <!--ICONS-->
 
-  <script>
-    try { var t = localStorage.getItem('theme'); if (t === 'dark' || t === 'light') document.documentElement.setAttribute('data-theme', t); } catch (e) {}
-  </script>
-
   <title>Yong An Hong | Cybersecurity Portfolio</title>
+
+  <script>
+    (() => {
+      let t; try { t = localStorage.getItem('theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.dataset.theme = t;
+      document.querySelector('meta[name="theme-color"]').content = t === 'dark' ? '#0b0a12' : '#eef3f4';
+    })();
+  </script>
 
   <style>
 
@@ -37,23 +42,8 @@
       padding-top: env(safe-area-inset-top, 0px);
       padding-bottom: env(safe-area-inset-bottom, 0px);
     }
-    @media (prefers-color-scheme: dark) {
-      :root:not([data-theme]) {
-        --bg: #0b0a12;
-        --text: #f3eefc;
-        --muted: #a49bb8;
-        --accent: #c07bff;
-        --glass: linear-gradient(135deg, rgba(255,255,255,.14), rgba(255,255,255,.05));
-        --glass-border: rgba(255,255,255,.18);
-        --glass-edge: inset 0 1px 1px rgba(255,255,255,.28), inset 0 -1px 1px rgba(255,255,255,.06);
-        --glass-shadow: 0 10px 40px rgba(0,0,0,.45);
-        --inner: rgba(255,255,255,.07);
-        --line: rgba(255,255,255,.12);
-        color-scheme: dark;
-      }
-    }
     :root[data-theme="dark"] {
-    --bg: #0b0a12;
+      --bg: #0b0a12;
       --text: #f3eefc;
       --muted: #a49bb8;
       --accent: #c07bff;
@@ -65,7 +55,6 @@
       --line: rgba(255,255,255,.12);
       color-scheme: dark;
     }
-    :root[data-theme="light"] { color-scheme: light; }
 
     html { scroll-padding-top: calc(env(safe-area-inset-top, 0px) + 90px); scroll-behavior: smooth; touch-action: manipulation; }
     * { box-sizing: border-box; }
@@ -119,7 +108,6 @@
       align-items: center;
       transition: transform .45s cubic-bezier(.4,0,.2,1);
     }
-    nav.hide { transform: translateY(calc(-100% - env(safe-area-inset-top, 0px) - 40px)); }
 
     .menu-btn {
       display: none;
@@ -137,16 +125,16 @@
     }
     .menu-btn span {
       position: absolute;
-      left: 11px;
+      left: 17px;
       width: 18px;
       height: 2px;
       border-radius: 2px;
       background: currentColor;
       transition: transform .35s cubic-bezier(.4,0,.2,1), opacity .2s;
     }
-    .menu-btn span:nth-child(1) { top: 14px; }
-    .menu-btn span:nth-child(2) { top: 19px; }
-    .menu-btn span:nth-child(3) { top: 24px; }
+    .menu-btn span:nth-child(1) { top: 20px; }
+    .menu-btn span:nth-child(2) { top: 25px; }
+    .menu-btn span:nth-child(3) { top: 30px; }
     nav.open .menu-btn span:nth-child(1) { transform: translateY(5px) rotate(45deg); }
     nav.open .menu-btn span:nth-child(2) { opacity: 0; }
     nav.open .menu-btn span:nth-child(3) { transform: translateY(-5px) rotate(-45deg); }
@@ -154,37 +142,6 @@
     .logo b { color: var(--accent); }
     nav div a { color: var(--muted); text-decoration: none; margin-left: 20px; font-size: .9rem; transition: color .2s; }
     nav div a:hover { color: var(--text); }
-
-
-    nav > div { margin-left: auto; }
-    .theme-btn {
-      position: relative;
-      flex-shrink: 0;
-      width: 36px;
-      height: 36px;
-      margin: -2px 0 -2px 14px;
-      padding: 0;
-      border: 1px solid var(--line);
-      border-radius: 50%;
-      background: var(--inner);
-      color: var(--text);
-      cursor: pointer;
-      display: grid;
-      place-items: center;
-      transition: var(--spring);
-      -webkit-tap-highlight-color: transparent;
-    }
-    .theme-btn:hover { transform: scale(1.08) rotate(12deg); }
-    .theme-btn:active { transform: scale(.92); }
-    .theme-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
-    .theme-btn svg { width: 18px; height: 18px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
-    .theme-btn .sun { display: none; }
-    :root[data-theme="dark"] .theme-btn .sun { display: block; }
-    :root[data-theme="dark"] .theme-btn .moon { display: none; }
-    @media (max-width: 560px) {
-      nav .menu-btn { margin-left: auto; }
-      .theme-btn { margin-left: 6px; }
-    }
 
     .hero { display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; align-items: center; padding: 56px 0 64px; }
     .eyebrow { font-size: .8rem; font-weight: 600; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; }
@@ -381,6 +338,85 @@
       .feature { padding: 18px; }
       .feature .btns .btn { flex: 1 1 100%; }
     }
+
+    /* ===== Nav: one pill -> pieces split apart -> logo & toggle hide ===== */
+    nav {
+      /* the joined pill's glass lives on ::before so the pieces can detach */
+      background: none; border: 0; box-shadow: none;
+      -webkit-backdrop-filter: none; backdrop-filter: none;
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;   /* logo left, links dead-centre, toggle right: nothing moves on scroll */
+      align-items: center;
+      width: 100%; margin: 18px 0 0; padding: 0;
+      transition: transform .45s cubic-bezier(.4,0,.2,1);
+    }
+    nav.split::after { display: none; }
+
+    nav::before, .logo::before, .theme-btn::before, .menu-btn::before, nav div::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      border-radius: 99px;
+      background: var(--glass); border: 1px solid var(--glass-border);
+      box-shadow: var(--glass-edge), var(--glass-shadow);
+      -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%);
+      transition: opacity .7s ease;
+    }
+    .logo::before, .theme-btn::before, .menu-btn::before, nav div::before { opacity: 0; }
+    nav::before, nav::after { left: var(--pl, 0px); right: var(--pr, 0px); }
+    nav::after { left: calc(var(--pl, 0px) - 1px); right: calc(var(--pr, 0px) - 1px); }
+    nav.split::before { opacity: 0; }
+    nav { pointer-events: none; }
+    .logo, nav div, .theme-btn, .menu-btn { pointer-events: auto; }
+    nav.split .logo::before, nav.split .theme-btn::before, nav.split .menu-btn::before, nav.split div::before { opacity: 1; }
+
+    .logo { position: relative; isolation: isolate; justify-self: start; padding: 13px 20px; will-change: transform;
+            transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .9s cubic-bezier(.32,.72,0,1), visibility 0s; }
+
+    .theme-btn {
+      position: relative; isolation: isolate; justify-self: end; flex-shrink: 0;
+      width: 52px; height: 52px; margin: 0; padding: 0;
+      border: 0; border-radius: 50%; background: none; color: var(--text); cursor: pointer;
+      display: grid; place-items: center;
+      will-change: transform; transition: background .2s, opacity .7s cubic-bezier(.4,0,.2,1), transform .9s cubic-bezier(.32,.72,0,1), visibility 0s;
+    }
+    .theme-btn:hover { background: var(--inner); }
+    .theme-btn svg { grid-area: 1 / 1; width: 18px; height: 18px; transition: transform .5s cubic-bezier(.34,1.56,.64,1), opacity .25s; }
+    .theme-btn .sun { opacity: 0; transform: rotate(-90deg) scale(.5); }
+    :root[data-theme="dark"] .theme-btn .sun { opacity: 1; transform: none; }
+    :root[data-theme="dark"] .theme-btn .moon { opacity: 0; transform: rotate(90deg) scale(.5); }
+
+    /* no transitions while the page loads or resizes, so the nav appears already in place */
+    nav.static, nav.static *, nav.static::before, nav.static::after, nav.static *::before { transition: none !important; }
+
+    /* second scroll: every piece hides completely */
+    nav.gone .logo, nav.gone .theme-btn, nav.gone .menu-btn {
+      pointer-events: none; visibility: hidden;
+      transition: transform .62s cubic-bezier(.65,0,.35,1) .03s, visibility 0s .65s;
+    }
+
+    /* main page: logo and toggle sit right next to the links bar (offsets measured in JS) */
+    .logo { transform: translateX(var(--lx, 0px)); }
+    .theme-btn { transform: translateX(var(--tx, 0px)); }
+    .menu-btn { transform: translateX(var(--mx, 0px)); }
+    /* first scroll: expand outward to the full-width positions while the glass disconnects */
+    nav.split .logo, nav.split .theme-btn, nav.split .menu-btn { transform: none; }
+    nav.gone .logo { transform: translateY(calc(-100% - env(safe-area-inset-top, 0px) - 40px)); }
+    nav.gone .theme-btn { transform: translateY(calc(-100% - env(safe-area-inset-top, 0px) - 40px)); }
+    nav.gone .menu-btn { transform: translateY(calc(-100% - env(safe-area-inset-top, 0px) - 40px)); }
+
+    @media (min-width: 561px) {
+      nav div { isolation: isolate; overflow: hidden; border-radius: 99px; white-space: nowrap; padding: 0 20px; height: 52px; line-height: 52px;
+                transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .85s cubic-bezier(.32,.72,0,1), visibility 0s; }
+      nav div a:first-of-type { margin-left: 0; }
+      nav.gone div { transform: translateY(calc(-100% - env(safe-area-inset-top, 0px) - 40px)); pointer-events: none; visibility: hidden;
+                     transition: transform .62s cubic-bezier(.65,0,.35,1), visibility 0s .62s; }
+      .pill { top: 1px; bottom: 1px; }
+    }
+
+    @media (max-width: 560px) {
+      nav { grid-template-columns: 1fr auto auto; }
+      .menu-btn { isolation: isolate; margin: 0 0 0 6px; width: 52px; height: 52px; will-change: transform;
+                   transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .9s cubic-bezier(.32,.72,0,1), visibility 0s; }
+    }
   </style>
 </head>
 
@@ -388,19 +424,19 @@
   <div class="bg" aria-hidden="true"><i></i><i></i><i></i></div>
   <div class="wrap">
 
-    <nav>
+    <nav class="static">
       <span class="logo">Yong An <b>Hong</b></span>
-      <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
       <div id="nav-links">
         <a href="#about">About</a>
         <a href="#projects">Projects</a>
         <a href="#skills">Toolkit</a>
         <a href="#contact">Contact</a>
       </div>
-      <button class="theme-btn" type="button" aria-label="Switch to dark mode" title="Toggle dark / light mode">
-        <svg class="moon" viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
-        <svg class="sun" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
+      <button class="theme-btn" type="button" aria-label="Toggle dark and light mode">
+        <svg class="moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+        <svg class="sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4.9 4.9l1.4 1.4M17.7 17.7l1.4 1.4M2 12h2M20 12h2M4.9 19.1l1.4-1.4M17.7 6.3l1.4-1.4"/></svg>
       </button>
+      <button class="menu-btn" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="nav-links"><span></span><span></span><span></span></button>
     </nav>
 
     <header class="hero">
@@ -571,32 +607,6 @@
     (() => {
       'use strict';
 
-      const root = document.documentElement;
-      const themeMeta = document.querySelector('meta[name="theme-color"]');
-      const themeBtn = document.querySelector('.theme-btn');
-      const darkMQ = matchMedia('(prefers-color-scheme: dark)');
-      const isDark = () => root.getAttribute('data-theme') === 'dark' || (!root.hasAttribute('data-theme') && darkMQ.matches);
-      function syncTheme() {
-        const dark = isDark();
-        root.setAttribute('data-theme', dark ? 'dark' : 'light');
-        if (themeMeta) themeMeta.content = dark ? '#0b0a12' : '#eef3f4';
-        themeBtn.setAttribute('aria-label', dark ? 'Switch to light mode' : 'Switch to dark mode');
-      }
-      syncTheme();
-      themeBtn.addEventListener('click', () => {
-        const next = isDark() ? 'light' : 'dark';
-        root.setAttribute('data-theme', next);
-        try { localStorage.setItem('theme', next); } catch (e) {}
-        syncTheme();
-      });
-      darkMQ.addEventListener('change', (e) => {
-        let saved = null;
-        try { saved = localStorage.getItem('theme'); } catch (err) {}
-        if (saved) return;
-        root.setAttribute('data-theme', e.matches ? 'dark' : 'light');
-        syncTheme();
-      });
-
       const roleEl = document.getElementById("role");
       if (roleEl) {
         const roles = ["Aspiring security analyst", "Learning ethical hacking", "Minecraft community builder"];
@@ -625,7 +635,6 @@
 
       const nav = document.querySelector('nav');
       const menuBtn = nav.querySelector('.menu-btn');
-      let lastY = scrollY;
 
       function setMenu(open) {
         nav.classList.toggle('open', open);
@@ -633,14 +642,68 @@
         menuBtn.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
       }
 
+      let state = 'joined', anchor = 0, lastY = scrollY;
+      const HIDE_AFTER = 60;   // px of extra scrolling down before the logo and toggle hide
+
+      function setState(next) {
+        state = next;
+        nav.classList.toggle('split', next !== 'joined');
+        nav.classList.toggle('gone', next === 'gone');
+        if (next === 'gone') setMenu(false);
+      }
+      setState(scrollY > 8 ? 'split' : 'joined');
+
       addEventListener('scroll', () => {
         const y = Math.max(scrollY, 0);
-        if (Math.abs(y - lastY) < 6) return;
-        const hide = y > lastY && y > 80;
-        nav.classList.toggle('hide', hide);
-        if (hide) setMenu(false);
+        if (y <= 8) { setState('joined'); lastY = y; return; }
+        const dy = y - lastY;
+        if (Math.abs(dy) < 6) return;
+        if (dy > 0) {
+          if (state === 'joined') { setState('split'); anchor = y; }
+          else if (state === 'split' && y - anchor > HIDE_AFTER) setState('gone');
+        } else {
+          if (state === 'gone') { setState('split'); anchor = y; }
+          else anchor = Math.min(anchor, y);
+        }
         lastY = y;
       }, { passive: true });
+
+      const themeBtn = nav.querySelector('.theme-btn');
+      const metaTheme = document.querySelector('meta[name="theme-color"]');
+      themeBtn.addEventListener('click', () => {
+        const next = document.documentElement.dataset.theme === 'dark' ? 'light' : 'dark';
+        document.documentElement.dataset.theme = next;
+        metaTheme.content = next === 'dark' ? '#0b0a12' : '#eef3f4';
+        try { localStorage.setItem('theme', next); } catch (e) {}
+      });
+
+      const logoEl = nav.querySelector('.logo');
+      const linksEl = nav.querySelector('#nav-links');
+      function layoutNav() {
+        const set = (k, v) => nav.style.setProperty(k, v.toFixed(1) + 'px');
+        if (innerWidth > 560) {
+          const gap = 12;
+          set('--lx', linksEl.offsetLeft - gap - (logoEl.offsetLeft + logoEl.offsetWidth));
+          set('--tx', linksEl.offsetLeft + linksEl.offsetWidth + gap - themeBtn.offsetLeft);
+          set('--mx', 0);
+          set('--pl', logoEl.offsetLeft + parseFloat(nav.style.getPropertyValue('--lx')));
+          set('--pr', nav.offsetWidth - (themeBtn.offsetLeft + themeBtn.offsetWidth + parseFloat(nav.style.getPropertyValue('--tx'))));
+        } else {
+          const gap = 8;
+          const total = logoEl.offsetWidth + gap + themeBtn.offsetWidth + gap + menuBtn.offsetWidth;
+          const start = (nav.offsetWidth - total) / 2;
+          set('--lx', start - logoEl.offsetLeft);
+          set('--tx', start + logoEl.offsetWidth + gap - themeBtn.offsetLeft);
+          set('--mx', start + logoEl.offsetWidth + gap + themeBtn.offsetWidth + gap - menuBtn.offsetLeft);
+          set('--pl', start);
+          set('--pr', nav.offsetWidth - start - total);
+        }
+      }
+      const settle = () => requestAnimationFrame(() => requestAnimationFrame(() => nav.classList.remove('static')));
+      layoutNav();
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => { layoutNav(); settle(); });
+      else settle();
+      addEventListener('resize', () => { nav.classList.add('static'); layoutNav(); settle(); });
 
       menuBtn.addEventListener('click', () => setMenu(!nav.classList.contains('open')));
       nav.querySelectorAll('div a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
