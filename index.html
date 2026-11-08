@@ -358,15 +358,22 @@
       background: var(--glass); border: 1px solid var(--glass-border);
       box-shadow: var(--glass-edge), var(--glass-shadow);
       -webkit-backdrop-filter: blur(22px) saturate(180%); backdrop-filter: blur(22px) saturate(180%);
-      transition: opacity .7s ease;
+      transition: opacity .15s ease;
     }
     .logo::before, .theme-btn::before, .menu-btn::before, nav div::before { opacity: 0; }
     nav::before, nav::after { left: var(--pl, 0px); right: var(--pr, 0px); }
     nav::after { left: calc(var(--pl, 0px) - 1px); right: calc(var(--pr, 0px) - 1px); }
+    /* contracting: the pill connects instantly and its edges travel with the pieces */
+    nav::before { transition: opacity .15s ease, left .9s cubic-bezier(.32,.72,0,1), right .9s cubic-bezier(.32,.72,0,1); }
+    nav.split::before { left: 0; right: 0; }
     nav.split::before { opacity: 0; }
     nav { pointer-events: none; }
     .logo, nav div, .theme-btn, .menu-btn { pointer-events: auto; }
     nav.split .logo::before, nav.split .theme-btn::before, nav.split .menu-btn::before, nav.split div::before { opacity: 1; }
+    /* expanding: swap glass instantly so no pill is left behind in the centre while the pieces move apart */
+    nav.split::before, nav.split .logo::before, nav.split .theme-btn::before, nav.split .menu-btn::before, nav.split div::before {
+      transition: opacity .1s ease;
+    }
 
     .logo { position: relative; isolation: isolate; justify-self: start; padding: 13px 20px; will-change: transform;
             transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .9s cubic-bezier(.32,.72,0,1), visibility 0s; }
@@ -390,7 +397,7 @@
     /* second scroll: every piece hides completely */
     nav.gone .logo, nav.gone .theme-btn, nav.gone .menu-btn {
       pointer-events: none; visibility: hidden;
-      transition: transform .62s cubic-bezier(.65,0,.35,1) .03s, visibility 0s .65s;
+      transition: transform .8s cubic-bezier(.45,0,.2,1), visibility 0s .8s;
     }
 
     /* main page: logo and toggle sit right next to the links bar (offsets measured in JS) */
@@ -408,7 +415,7 @@
                 transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .85s cubic-bezier(.32,.72,0,1), visibility 0s; }
       nav div a:first-of-type { margin-left: 0; }
       nav.gone div { transform: translateY(calc(-100% - env(safe-area-inset-top, 0px) - 40px)); pointer-events: none; visibility: hidden;
-                     transition: transform .62s cubic-bezier(.65,0,.35,1), visibility 0s .62s; }
+                     transition: transform .8s cubic-bezier(.45,0,.2,1), visibility 0s .8s; }
       .pill { top: 1px; bottom: 1px; }
     }
 
@@ -416,6 +423,26 @@
       nav { grid-template-columns: 1fr auto auto; }
       .menu-btn { isolation: isolate; margin: 0 0 0 6px; width: 52px; height: 52px; will-change: transform;
                    transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .9s cubic-bezier(.32,.72,0,1), visibility 0s; }
+    }
+
+    /* ===== Seamless morph: three fully rounded glass pieces that touch when joined and pull apart on scroll =====
+       The single pill connects instantly on contract; its edges ride along with the pieces. */
+    nav::after { display: none; }
+    /* contracting: the pill connects immediately and its edges travel with the pieces */
+    nav::before { left: var(--pl, 0px); right: var(--pr, 0px); opacity: 1;
+                  transition: opacity .15s ease, left .9s cubic-bezier(.32,.72,0,1), right .9s cubic-bezier(.32,.72,0,1); }
+    nav.split::before { left: 0; right: 0; opacity: 0;
+                        transition: opacity .1s ease, left .9s cubic-bezier(.32,.72,0,1), right .9s cubic-bezier(.32,.72,0,1); }
+    .logo::before, .theme-btn::before, .menu-btn::before, nav div::before {
+      border-radius: inherit;
+      transition: opacity .15s ease;
+    }
+    nav.split .logo::before, nav.split .theme-btn::before, nav.split .menu-btn::before, nav.split div::before {
+      transition: opacity .1s ease;
+    }
+    .logo, .theme-btn, .menu-btn { border-radius: 99px; }
+    @media (min-width: 561px) {
+      nav div { border-radius: 99px; }
     }
   </style>
 </head>
@@ -643,6 +670,7 @@
       }
 
       let state = 'joined', anchor = 0, lastY = scrollY;
+      let rejoinTimer, landedAt = 0;   // landedAt: when the nav finishes sliding back down after being hidden
       const HIDE_AFTER = 60;   // px of extra scrolling down before the logo and toggle hide
 
       function setState(next) {
@@ -655,14 +683,25 @@
 
       addEventListener('scroll', () => {
         const y = Math.max(scrollY, 0);
-        if (y <= 8) { setState('joined'); lastY = y; return; }
+        if (y <= 8) {
+          lastY = y;
+          clearTimeout(rejoinTimer);
+          if (state === 'gone') { setState('split'); landedAt = performance.now() + 650; }
+          const wait = landedAt - performance.now();
+          if (wait > 0) {
+            // it is still sliding down: let it land straight, then contract
+            rejoinTimer = setTimeout(() => { if (scrollY <= 8) setState('joined'); }, wait);
+          } else setState('joined');
+          return;
+        }
+        clearTimeout(rejoinTimer);
         const dy = y - lastY;
         if (Math.abs(dy) < 6) return;
         if (dy > 0) {
           if (state === 'joined') { setState('split'); anchor = y; }
           else if (state === 'split' && y - anchor > HIDE_AFTER) setState('gone');
         } else {
-          if (state === 'gone') { setState('split'); anchor = y; }
+          if (state === 'gone') { setState('split'); anchor = y; landedAt = performance.now() + 650; }
           else anchor = Math.min(anchor, y);
         }
         lastY = y;
@@ -682,14 +721,14 @@
       function layoutNav() {
         const set = (k, v) => nav.style.setProperty(k, v.toFixed(1) + 'px');
         if (innerWidth > 560) {
-          const gap = 12;
+          const gap = 0;
           set('--lx', linksEl.offsetLeft - gap - (logoEl.offsetLeft + logoEl.offsetWidth));
           set('--tx', linksEl.offsetLeft + linksEl.offsetWidth + gap - themeBtn.offsetLeft);
           set('--mx', 0);
           set('--pl', logoEl.offsetLeft + parseFloat(nav.style.getPropertyValue('--lx')));
           set('--pr', nav.offsetWidth - (themeBtn.offsetLeft + themeBtn.offsetWidth + parseFloat(nav.style.getPropertyValue('--tx'))));
         } else {
-          const gap = 8;
+          const gap = 0;
           const total = logoEl.offsetWidth + gap + themeBtn.offsetWidth + gap + menuBtn.offsetWidth;
           const start = (nav.offsetWidth - total) / 2;
           set('--lx', start - logoEl.offsetLeft);
