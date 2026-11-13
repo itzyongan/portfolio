@@ -149,8 +149,9 @@
     nav div a:hover { color: var(--text); }
 
     .hero { display: grid; grid-template-columns: 1.5fr 1fr; gap: 24px; align-items: center; padding: 56px 0 64px; }
+    .hero > div { min-width: 0; }
     .eyebrow { font-size: .8rem; font-weight: 600; color: var(--accent); letter-spacing: .12em; text-transform: uppercase; }
-    h1 { font-size: clamp(2rem, 5.2vw, 3rem); line-height: 1.08; margin: 16px 0 18px; letter-spacing: -.035em; white-space: nowrap; }
+    h1 { font-size: clamp(1.7rem, 5.2vw, 3rem); line-height: 1.08; margin: 16px 0 18px; letter-spacing: -.035em; white-space: nowrap; }
     h1 span { background: linear-gradient(90deg, #b44cff, #9F00FF); -webkit-background-clip: text; background-clip: text; color: transparent; }
     h1 small { display: block; font-size: .6em; font-weight: 600; color: var(--muted); letter-spacing: -.02em; margin-top: 6px; }
     .lead { color: var(--muted); max-width: 480px; margin: 0; font-size: 1rem; }
@@ -304,7 +305,7 @@
       .shield { order: -1; }
       .shield svg { width: 150px; }
     }
-    @media (max-width: 560px) {
+    @media (max-width: 640px) {
       nav { padding: 9px 12px 9px 20px; }
       .menu-btn { display: block; }
 
@@ -380,7 +381,7 @@
       transition: opacity .1s ease;
     }
 
-    .logo { position: relative; isolation: isolate; justify-self: start; padding: 13px 20px; will-change: transform;
+    .logo { position: relative; isolation: isolate; justify-self: start; padding: 0 20px; line-height: 52px; will-change: transform;
             transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .9s cubic-bezier(.32,.72,0,1), visibility 0s; }
 
     .theme-btn {
@@ -415,7 +416,7 @@
     nav.gone .theme-btn { transform: translateY(calc(-100% - env(safe-area-inset-top, 0px) - 40px)); }
     nav.gone .menu-btn { transform: translateY(calc(-100% - env(safe-area-inset-top, 0px) - 40px)); }
 
-    @media (min-width: 561px) {
+    @media (min-width: 641px) {
       nav div { isolation: isolate; overflow: hidden; border-radius: 99px; white-space: nowrap; padding: 0 20px; height: 52px; line-height: 52px;
                 transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .85s cubic-bezier(.32,.72,0,1), visibility 0s; }
       nav div a:first-of-type { margin-left: 0; }
@@ -424,7 +425,7 @@
       .pill { top: 1px; bottom: 1px; }
     }
 
-    @media (max-width: 560px) {
+    @media (max-width: 640px) {
       nav { grid-template-columns: 1fr auto auto; }
       .menu-btn { isolation: isolate; margin: 0 0 0 6px; width: 52px; height: 52px; will-change: transform;
                    transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .9s cubic-bezier(.32,.72,0,1), visibility 0s; }
@@ -446,7 +447,7 @@
       transition: opacity .1s ease;
     }
     .logo, .theme-btn, .menu-btn { border-radius: 99px; }
-    @media (min-width: 561px) {
+    @media (min-width: 641px) {
       nav div { border-radius: 99px; }
     }
   </style>
@@ -725,7 +726,7 @@
       const linksEl = nav.querySelector('#nav-links');
       function layoutNav() {
         const set = (k, v) => nav.style.setProperty(k, v.toFixed(1) + 'px');
-        if (innerWidth > 560) {
+        if (innerWidth > 640) {
           const gap = 0;
           set('--lx', linksEl.offsetLeft - gap - (logoEl.offsetLeft + logoEl.offsetWidth));
           set('--tx', linksEl.offsetLeft + linksEl.offsetWidth + gap - themeBtn.offsetLeft);
@@ -753,7 +754,7 @@
       nav.querySelectorAll('div a').forEach((a) => a.addEventListener('click', () => setMenu(false)));
       addEventListener('pointerdown', (e) => { if (!nav.contains(e.target)) setMenu(false); });
       addEventListener('keydown', (e) => { if (e.key === 'Escape') setMenu(false); });
-      matchMedia('(min-width: 561px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
+      matchMedia('(min-width: 641px)').addEventListener('change', (e) => { if (e.matches) setMenu(false); });
 
       const TAP_OUTLINE_MS = 600;
 
