@@ -5,14 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="theme-color" content="#eef3f4">
   <meta name="description" content="First-year cybersecurity student at the American University of Phnom Penh.">
-  <meta http-equiv="Content-Security-Policy" content="default-src 'none'; script-src 'unsafe-inline'; style-src 'unsafe-inline' https://fonts.googleapis.com; font-src https://fonts.gstatic.com; img-src 'self' data:; base-uri 'none'; form-action 'none'">
-  <link rel="canonical" href="https://itzyongan.github.io/">
-  <meta property="og:type" content="website">
-  <meta property="og:title" content="Yong An Hong | Cybersecurity Portfolio">
-  <meta property="og:description" content="First-year cybersecurity student at the American University of Phnom Penh.">
-  <meta property="og:url" content="https://itzyongan.github.io/">
-  <meta property="og:image" content="https://itzyongan.github.io/assets/icons/favicon-256.png">
-  <meta name="twitter:card" content="summary">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -364,6 +356,7 @@
       width: 100%; margin: 18px 0 0; padding: 0;
       transition: transform .45s cubic-bezier(.4,0,.2,1);
     }
+    nav.split::after { display: none; }
 
     nav::before, .logo::before, .theme-btn::before, .menu-btn::before, nav div::before {
       content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
@@ -378,6 +371,8 @@
     nav::after { left: calc(var(--pl, 0px) - 1px); right: calc(var(--pr, 0px) - 1px); }
     /* contracting: the pill connects instantly and its edges travel with the pieces */
     nav::before { transition: opacity .15s ease, left .9s cubic-bezier(.32,.72,0,1), right .9s cubic-bezier(.32,.72,0,1); }
+    nav.split::before { left: 0; right: 0; }
+    nav.split::before { opacity: 0; }
     nav { pointer-events: none; }
     .logo, nav div, .theme-btn, .menu-btn { pointer-events: auto; }
     nav.split .logo::before, nav.split .theme-btn::before, nav.split .menu-btn::before, nav.split div::before { opacity: 1; }
@@ -436,14 +431,6 @@
                    transition: opacity .7s cubic-bezier(.4,0,.2,1), transform .9s cubic-bezier(.32,.72,0,1), visibility 0s; }
     }
 
-    :focus-visible { outline: 2px solid var(--accent); outline-offset: 3px; }
-    nav div a:focus-visible { outline-offset: -4px; border-radius: 99px; }
-
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { animation: none !important; transition-duration: .01ms !important; transition-delay: 0s !important; }
-    }
-
     /* ===== Seamless morph: three fully rounded glass pieces that touch when joined and pull apart on scroll =====
        The single pill connects instantly on contract; its edges ride along with the pieces. */
     nav::after { display: none; }
@@ -489,7 +476,7 @@
       <div>
         <div class="eyebrow">Cybersecurity · AUPP · Year 1</div>
         <h1>Hi, I’m <span>Yong An</span>.<small>Cybersecurity student.</small></h1>
-        <div class="role" id="role"><noscript>Aspiring security analyst</noscript></div>
+        <div class="role" id="role"></div>
         <p class="lead">Learning how systems break so I can help keep them secure.</p>
         <div class="btns">
           <a class="btn p" href="https://github.com/itzyongan" target="_blank" rel="noopener">View GitHub</a>
@@ -534,8 +521,8 @@
 
         <div class="stats">
           <div><b>10</b><small>stars</small></div>
-          <div><b>341</b><small>commits</small></div>
-          <div><b>21</b><small>servers</small></div>
+          <div><b>230</b><small>commits</small></div>
+          <div><b>20</b><small>servers</small></div>
         </div>
         <div class="btns">
           <a class="btn p" href="https://asia-pvp-servers.vercel.app/" target="_blank" rel="noopener">Visit live site</a>
@@ -657,8 +644,7 @@
       if (roleEl) {
         const roles = ["Aspiring security analyst", "Learning ethical hacking", "Minecraft community builder"];
         let i = 0, j = 0, del = false;
-        if (matchMedia('(prefers-reduced-motion: reduce)').matches) { roleEl.textContent = roles[0]; }
-        else (function tick() {
+        (function tick() {
           const s = roles[i];
           j += del ? -1 : 1;
           roleEl.textContent = s.slice(0, j);
@@ -676,7 +662,7 @@
           const target = document.getElementById(link.getAttribute('href').slice(1));
           if (!target) return;
           e.preventDefault();
-          target.scrollIntoView({ behavior: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth', block: 'start' });
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
         });
       });
 
@@ -816,7 +802,7 @@
       });
       menu.addEventListener('mouseleave', () => { pill.style.opacity = 0; });
 
-      const shield = shieldEl;
+      const shield = document.querySelector('.shield svg');
       if (shield) {
         const NEAR = 360;
         let sx = 0, sy = 0, queued = false;
